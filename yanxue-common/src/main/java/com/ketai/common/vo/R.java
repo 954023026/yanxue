@@ -1,6 +1,7 @@
 package com.ketai.common.vo;
 
-import com.bdqn.common.constants.ResultCodeEnum;
+//import com.bdqn.common.constants.ResultCodeEnum;
+import com.ketai.common.constants.ResultCodeEnum;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;

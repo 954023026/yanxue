@@ -27,4 +27,16 @@
       <module name="yanxue-service-utils" target="1.8" />
     </bytecodeTargetLevel>
   </component>
+  <component name="JavacSettings">
+    <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="yanxue-activity" options="-parameters" />
+      <module name="yanxue-common" options="-parameters" />
+      <module name="yanxue-eureka" options="-parameters" />
+      <module name="yanxue-gateway" options="-parameters" />
+      <module name="yanxue-model" options="-parameters" />
+      <module name="yanxue-parent" options="-parameters" />
+      <module name="yanxue-service-api" options="-parameters" />
+      <module name="yanxue-service-utils" options="-parameters" />
+    </option>
+  </component>
 </project>

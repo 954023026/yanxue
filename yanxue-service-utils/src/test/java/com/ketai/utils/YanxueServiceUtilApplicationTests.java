@@ -1,6 +1,6 @@
 package com.ketai.utils;
 
-import org.junit.jupiter.api.Test;
+import org.testng.annotations.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
