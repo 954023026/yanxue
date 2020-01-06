@@ -1,8 +1,10 @@
 package com.ketai.api.config;
 
+import com.google.common.base.Predicates;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import springfox.documentation.builders.ApiInfoBuilder;
+import springfox.documentation.builders.PathSelectors;
 import springfox.documentation.builders.RequestHandlerSelectors;
 import springfox.documentation.service.ApiInfo;
 import springfox.documentation.spi.DocumentationType;
@@ -19,7 +21,9 @@ public class Swagger2Configuration {
                 .apiInfo(apiInfo())
                 .select()
                 .apis(RequestHandlerSelectors.basePackage("com.ketai"))
-//                .paths(PathSelectors.any())
+                //                .paths(Predicates.not(PathSelectors.regex("/admin/.*")))
+                .paths(Predicates.not(PathSelectors.regex("/error.*")))
+                .paths(PathSelectors.any())
                 .build();
     }
 

@@ -15,11 +15,16 @@
 
     <dependencies>
 
-     <!--   <dependency>
+        <dependency>
             <groupId>com.ketai.service</groupId>
             <artifactId>yanxue-common</artifactId>
             <version>0.0.1-SNAPSHOT</version>
-        </dependency>-->
+        </dependency>
+        <dependency>
+            <groupId>com.ketai.service</groupId>
+            <artifactId>yanxue-model</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+        </dependency>
         <dependency>
             <groupId>com.ketai.service</groupId>
             <artifactId>yanxue-service-api</artifactId>
@@ -38,7 +43,6 @@
         <dependency>
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
-            <version>8.0.11</version>
         </dependency>
         <!-- velocity 模板引擎, Mybatis Plus 代码生成器需要 -->
         <dependency>
