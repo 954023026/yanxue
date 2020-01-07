@@ -1,69 +1,70 @@
 package com.ketai.common.response;
 
+import com.baomidou.mybatisplus.extension.api.R;
 import com.ketai.common.constants.ResultCodeEnum;
 import com.ketai.common.model.response.ResponseResult;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
+import org.springframework.http.ResponseEntity;
+
+import java.util.HashMap;
+import java.util.Map;
 
 @Data
-public class Result<T> extends ResponseResult {
-
+public class ResultMap extends ResponseResult {
     @ApiModelProperty(value = "返回数据")
-    private T result;
+    private Map<String, Object> data = new HashMap<String, Object>();
 
-    private Result() {
+    private ResultMap() {
     }
 
-    public static Result ok() {
-        Result r = new Result();
+    public static ResultMap ok() {
+        ResultMap r = new ResultMap();
         r.setSuccess(ResultCodeEnum.SUCCESS.getSuccess());
         r.setCode(ResultCodeEnum.SUCCESS.getCode());
         r.setMessage(ResultCodeEnum.SUCCESS.getMessage());
         return r;
     }
-    public static Result ok(Object result) {
-        Result r = new Result();
-        r.setSuccess(ResultCodeEnum.SUCCESS.getSuccess());
-        r.setCode(ResultCodeEnum.SUCCESS.getCode());
-        r.setMessage(ResultCodeEnum.SUCCESS.getMessage());
-        r.setResult(result);
-        return r;
-    }
 
-    public static Result error() {
-        Result r = new Result();
+    public static ResultMap error() {
+        ResultMap r = new ResultMap();
         r.setSuccess(ResultCodeEnum.UNKNOWN_REASON.getSuccess());
         r.setCode(ResultCodeEnum.UNKNOWN_REASON.getCode());
         r.setMessage(ResultCodeEnum.UNKNOWN_REASON.getMessage());
         return r;
     }
 
-    public static Result setResponseResult(ResultCodeEnum resultCodeEnum) {
-        Result r = new Result();
+    public static ResultMap setResult(ResultCodeEnum resultCodeEnum) {
+        ResultMap r = new ResultMap();
         r.setSuccess(resultCodeEnum.getSuccess());
         r.setCode(resultCodeEnum.getCode());
         r.setMessage(resultCodeEnum.getMessage());
         return r;
     }
 
-    public Result success(Boolean success) {
+    public ResultMap success(Boolean success) {
         this.setSuccess(success);
         return this;
     }
 
-    public Result message(String message) {
+    public ResultMap message(String message) {
         this.setMessage(message);
         return this;
     }
 
-    public Result code(Integer code) {
+    public ResultMap code(Integer code) {
         this.setCode(code);
         return this;
     }
 
-    public Result data(T result) {
-        this.setResult(result);
+    public ResultMap data(String key, Object value) {
+        this.data.put(key, value);
+        return this;
+    }
+
+    public ResultMap data(Map<String, Object> map) {
+        this.setData(map);
         return this;
     }
 }

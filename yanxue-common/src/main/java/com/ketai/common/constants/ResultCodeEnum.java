@@ -1,9 +1,10 @@
 package com.ketai.common.constants;
 
+import com.ketai.common.model.response.ResultCode;
 import lombok.Getter;
 
 @Getter
-public enum ResultCodeEnum {
+public enum ResultCodeEnum implements ResultCode {
     SUCCESS(true, 20000, "成功"),
     UNKNOWN_REASON(false, 20001, "未知错误"),
     BAD_SQL_GRAMMAR(false, 21001, "sql语法错误"),
@@ -38,5 +39,20 @@ public enum ResultCodeEnum {
         this.success = success;
         this.code = code;
         this.message = message;
+    }
+
+    @Override
+    public boolean success() {
+        return success;
+    }
+
+    @Override
+    public int code() {
+        return code;
+    }
+
+    @Override
+    public String message() {
+        return message;
     }
 }
