@@ -19,9 +19,9 @@ import java.util.List;
 public class ResultListPage<T> implements Serializable {
 
     private T datalist;
-    private int allPage;
-    private int allCount;
-    private int nowPage;
-    private int pageSize;
+    private long allPage;
+    private long allCount;
+    private long nowPage;
+    private long pageSize;
 
 }

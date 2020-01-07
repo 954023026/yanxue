@@ -1,7 +1,6 @@
 package com.ketai.api.ucenter;
 
 import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiOperation;
 
 
 @Api(value = "用户中心", description = "用户中心管理")

@@ -29,14 +29,14 @@
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
-      <module name="yanxue-activity" options="-parameters" />
-      <module name="yanxue-common" options="-parameters" />
-      <module name="yanxue-eureka" options="-parameters" />
-      <module name="yanxue-gateway" options="-parameters" />
-      <module name="yanxue-model" options="-parameters" />
-      <module name="yanxue-parent" options="-parameters" />
-      <module name="yanxue-service-api" options="-parameters" />
-      <module name="yanxue-service-utils" options="-parameters" />
+      <module name="yanxue-activity" options="" />
+      <module name="yanxue-common" options="" />
+      <module name="yanxue-eureka" options="" />
+      <module name="yanxue-gateway" options="" />
+      <module name="yanxue-model" options="" />
+      <module name="yanxue-parent" options="" />
+      <module name="yanxue-service-api" options="" />
+      <module name="yanxue-service-utils" options="" />
     </option>
   </component>
 </project>
