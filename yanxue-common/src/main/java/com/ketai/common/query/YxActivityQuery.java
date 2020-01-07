@@ -1,4 +1,4 @@
-package com.ketai.activity.school.query;
+package com.ketai.common.query;
 
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;

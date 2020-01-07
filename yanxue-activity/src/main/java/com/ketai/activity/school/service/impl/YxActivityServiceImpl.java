@@ -4,7 +4,7 @@ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.ketai.activity.school.mapper.YxActivityMapper;
-import com.ketai.activity.school.query.YxActivityQuery;
+import com.ketai.common.query.YxActivityQuery;
 import com.ketai.activity.school.service.YxActivityService;
 import com.ketai.model.domain.YxActivity;
 import org.springframework.stereotype.Service;
@@ -18,6 +18,7 @@ import org.springframework.util.StringUtils;
  * @author 研学旅行网项目组
  * @since 2020-01-06
  */
+
 @Service
 public class YxActivityServiceImpl extends ServiceImpl<YxActivityMapper, YxActivity> implements YxActivityService {
 
@@ -29,7 +30,7 @@ public class YxActivityServiceImpl extends ServiceImpl<YxActivityMapper, YxActiv
     @Override
     public void selectPage(Page<YxActivity> pageParm, YxActivityQuery yxActivityQuery) {
         QueryWrapper<YxActivity> queryWrapper = new QueryWrapper<>();
-        queryWrapper.orderByAsc("sort");
+//        queryWrapper.orderByAsc("sort");
         if(queryWrapper == null){
             baseMapper.selectPage(pageParm,queryWrapper);
             return;
@@ -45,16 +46,16 @@ public class YxActivityServiceImpl extends ServiceImpl<YxActivityMapper, YxActiv
 
         //条件查询
         if (!StringUtils.isEmpty(baseName)) {
-            queryWrapper.like("name", baseName);
+            queryWrapper.like("base_name", baseName);
         }
         if (!StringUtils.isEmpty(organizationName)) {
-            queryWrapper.eq("organizationName", baseName);
+            queryWrapper.eq("organization_name", organizationName);
         }
         if (!StringUtils.isEmpty(auditStatus)) {
-            queryWrapper.eq("auditStatus", baseName);
+            queryWrapper.eq("audit_status", auditStatus);
         }
         if (!StringUtils.isEmpty(activityName)) {
-            queryWrapper.like("name", activityName);
+            queryWrapper.like("activity_name", activityName);
         }
         baseMapper.selectPage(pageParm,queryWrapper);
     }
