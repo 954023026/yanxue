@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/yanxue.iml" filepath="$PROJECT_DIR$/.idea/yanxue.iml" />
       <module fileurl="file://$PROJECT_DIR$/yanxue-activity/yanxue-activity.iml" filepath="$PROJECT_DIR$/yanxue-activity/yanxue-activity.iml" />
       <module fileurl="file://$PROJECT_DIR$/yanxue-common/yanxue-common.iml" filepath="$PROJECT_DIR$/yanxue-common/yanxue-common.iml" />
       <module fileurl="file://$PROJECT_DIR$/yanxue-eureka/yanxue-eureka.iml" filepath="$PROJECT_DIR$/yanxue-eureka/yanxue-eureka.iml" />
