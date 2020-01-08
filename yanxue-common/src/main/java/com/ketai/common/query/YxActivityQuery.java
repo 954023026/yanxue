@@ -3,6 +3,7 @@ package com.ketai.common.query;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
+import org.springframework.util.StringUtils;
 
 import java.io.Serializable;
 
@@ -15,10 +16,10 @@ public class YxActivityQuery implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @ApiModelProperty(value = "研学主键ID")
-    private Integer id;
+    private String id;
 
     @ApiModelProperty(value = "学校id")
-    private Integer schId;
+    private String schId;
 
     @ApiModelProperty(value = "基地名称，模糊查询")
     private String baseName;

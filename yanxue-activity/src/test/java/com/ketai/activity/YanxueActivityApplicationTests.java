@@ -1,23 +1,24 @@
 package com.ketai.activity;
 
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.ketai.activity.front.service.FrontActivityService;
 import com.ketai.activity.school.service.YxActivityService;
 import com.ketai.activity.school.service.impl.YxActivityServiceImpl;
 import com.ketai.common.query.YxActivityQuery;
 import com.ketai.model.domain.YxActivity;
+import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
-import org.testng.annotations.Test;
 
 import java.util.List;
 
-//@RunWith(SpringRunner.class)
+@RunWith(SpringRunner.class)
 @SpringBootTest
 public class YanxueActivityApplicationTests {
     @Autowired
-//    private FrontActivityService yxActivityService;
+    private FrontActivityService yxActivityService;
 
     @Test
     public void testSelectPage() {

@@ -41,13 +41,13 @@ public class YxActivityServiceImpl extends ServiceImpl<YxActivityMapper, YxActiv
     @Override
     public void selectPage(Page<YxActivity> pageParm, YxActivityQuery yxActivityQuery) {
         QueryWrapper<YxActivity> queryWrapper = new QueryWrapper<>();
-//        queryWrapper.orderByAsc("sort");
-        if (queryWrapper == null) {
+        //queryWrapper.orderByAsc("sort");
+        if (yxActivityQuery == null) {
             baseMapper.selectPage(pageParm, queryWrapper);
             return;
         }
         //获取研学活动主键id
-        Integer id=yxActivityQuery.getId();
+        String id=yxActivityQuery.getId();
         //获取研学基地名称查询条件
         String baseName = yxActivityQuery.getBaseName();
         //获取承办基地名称查询条件
@@ -56,21 +56,20 @@ public class YxActivityServiceImpl extends ServiceImpl<YxActivityMapper, YxActiv
         String auditStatus = yxActivityQuery.getAuditStatus();
         //获取研学主题名称模糊查询条件
         String activityName = yxActivityQuery.getActivityName();
-
         //条件查询
-        if (!StringUtils.isEmpty(id.toString())) {
+        if (StringUtils.isNotBlank(id)) {
             queryWrapper.eq("id", id);
         }
-        if (!StringUtils.isEmpty(baseName)) {
+        if (StringUtils.isNotBlank(baseName)) {
             queryWrapper.like("base_name", baseName);
         }
-        if (!StringUtils.isEmpty(organizationName)) {
+        if (StringUtils.isNotBlank(organizationName)) {
             queryWrapper.eq("organization_name", organizationName);
         }
-        if (!StringUtils.isEmpty(auditStatus)) {
+        if (StringUtils.isNotBlank(auditStatus)) {
             queryWrapper.eq("audit_status", auditStatus);
         }
-        if (!StringUtils.isEmpty(activityName)) {
+        if (StringUtils.isNotBlank(activityName)) {
             queryWrapper.like("activity_name", activityName);
         }
         baseMapper.selectPage(pageParm, queryWrapper);

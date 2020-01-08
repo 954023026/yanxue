@@ -1,16 +1,24 @@
 package com.ketai.common.exception;
 
 import com.ketai.common.constants.ResultCodeEnum;
+import com.ketai.common.model.response.ResultCode;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
+import lombok.ToString;
 
+/**
+ * 自定义异常类型
+ */
 @Data
+@ToString
 @ApiModel(value = "全局异常")
 public class KetaiException extends RuntimeException {
     @ApiModelProperty(value = "状态码")
     private Integer code;
 
+    //错误代码
+    ResultCode resultCode;
     /**
      * 接受状态码和消息
      * @param code
@@ -29,11 +37,12 @@ public class KetaiException extends RuntimeException {
         super(resultCodeEnum.getMessage());
         this.code = resultCodeEnum.getCode();
     }
-    @Override
-    public String toString() {
-        return "KetaiException{" +
-                "message=" + this.getMessage() +
-                ", code=" + code +
-                '}';
+
+    /**
+     * 接收枚举类型
+     */
+    public KetaiException(ResultCode resultCode) {
+        super(resultCode.message());
+        this.resultCode = resultCode;
     }
 }

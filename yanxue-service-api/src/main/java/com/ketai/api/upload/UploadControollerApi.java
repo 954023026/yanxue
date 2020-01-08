@@ -13,12 +13,9 @@ import org.springframework.web.multipart.MultipartFile;
 @Api(value = "文件管理服务", description = "阿里云文件管理中心")
 public interface UploadControollerApi {
 
-
     @ApiOperation("图片上传")
     public Result image(
-            @ApiParam(name = "file", value = "文件", required = true)
-            @RequestParam("file") MultipartFile file,
-            @ApiParam(name = "host", value = "文件上传路径", required = false)
-            @RequestParam(value = "host", required = false) String host
+            @ApiParam(name = "file", value = "文件", required = true) MultipartFile file,
+            @ApiParam(name = "host", value = "文件上传路径", required = false) String host
     );
 }

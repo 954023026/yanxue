@@ -21,7 +21,7 @@ public class Swagger2Configuration {
                 .apiInfo(apiInfo())
                 .select()
                 .apis(RequestHandlerSelectors.basePackage("com.ketai"))
-                //                .paths(Predicates.not(PathSelectors.regex("/admin/.*")))
+                //.paths(Predicates.not(PathSelectors.regex("/admin/.*")))
                 .paths(Predicates.not(PathSelectors.regex("/error.*")))
                 .paths(PathSelectors.any())
                 .build();

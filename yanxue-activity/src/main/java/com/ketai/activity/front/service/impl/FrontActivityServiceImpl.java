@@ -36,22 +36,22 @@ public class FrontActivityServiceImpl extends ServiceImpl<FrontActivityMapper, Y
         String activityName = pcActivityQuery.getActivityName();    //模糊查询值
         Integer studyStep = pcActivityQuery.getStudyStep(); //阶段筛选
 
-        if (!StringUtils.isEmpty(baseId)){
+        if (StringUtils.isEmpty(baseId)){
             queryWrapper.eq("base_id",baseId);
         }
-        if (!StringUtils.isEmpty(organId)){
+        if (StringUtils.isEmpty(organId)){
             queryWrapper.eq("organ_id",organId);
         }
-        if (!StringUtils.isEmpty(organizationId)){
+        if (StringUtils.isEmpty(organizationId)){
             queryWrapper.eq("organization_id",organizationId);
         }
-        if (!StringUtils.isEmpty(baseId)){
+        if (StringUtils.isEmpty(baseId)){
             queryWrapper.eq("participation_sch_year",participationSchYear);
         }
-        if (!StringUtils.isEmpty(studyStep)){
+        if (StringUtils.isEmpty(studyStep)){
             queryWrapper.eq("study_step",studyStep);
         }
-        if (!StringUtils.isEmpty(activityName)){
+        if (StringUtils.isEmpty(activityName)){
             queryWrapper.like("activity_name",activityName);
         }
         baseMapper.selectPage(pageParam,queryWrapper);

@@ -1,10 +1,8 @@
 package com.ketai.model.domain;
 
-import com.baomidou.mybatisplus.annotation.TableName;
-import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.*;
+
 import java.util.Date;
-import com.baomidou.mybatisplus.annotation.Version;
-import com.baomidou.mybatisplus.annotation.TableId;
 import java.io.Serializable;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
@@ -70,6 +68,7 @@ public class YxActivityRecord implements Serializable {
     private String schyearTerm;
 
     @ApiModelProperty(value = "状态: 0已删除, 1正常")
+    @TableLogic
     private Integer status;
 
     @ApiModelProperty(value = "record活动风采 recordHome 首页8张风采 默认为record")

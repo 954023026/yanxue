@@ -13,17 +13,16 @@ import org.springframework.web.multipart.MultipartFile;
  **/
 @CrossOrigin //跨域
 @RestController
-@RequestMapping("/upload-controller")
+@RequestMapping("/upload")
 public class FileController implements UploadControollerApi {
     @Autowired
     private FileService fileService;
 
-    @PostMapping("upload")
+    @PostMapping("imageOther")
     @Override
-    public Result image(@ApiParam(name = "file", value = "文件", required = true)
-                         @RequestParam("file") MultipartFile file,
-                         @ApiParam(name = "host", value = "文件上传路径", required = false)
-                         @RequestParam(value = "host", required = false) String host) {
+    public Result image(
+            @RequestParam("file") MultipartFile file,
+            @RequestParam(value = "host", required = false) String host) {
         System.out.println("开始图片上传功能。。。");
         System.out.println("host:" + host);
         String uploadUrl = fileService.upload(file);
