@@ -4,6 +4,8 @@ package com.ketai.activity.orgin.mapper;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.ketai.model.domain.YxUndertakeOrg;
 
+import java.util.List;
+
 /**
  * <p>
  * 研学承办机构表 Mapper 接口
@@ -14,4 +16,5 @@ import com.ketai.model.domain.YxUndertakeOrg;
  */
 public interface YxUndertakeOrgMapper extends BaseMapper<YxUndertakeOrg> {
 
+    List<String> getAllYear();
 }

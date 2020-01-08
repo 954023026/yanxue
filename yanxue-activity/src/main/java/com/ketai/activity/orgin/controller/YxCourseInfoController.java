@@ -8,6 +8,7 @@ import com.ketai.common.response.ResultListPage;
 import com.ketai.model.domain.YxCourseInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
@@ -15,7 +16,8 @@ import java.util.List;
 /**
  * 研学课程信息
  */
-@RestController("pc/base/course")
+@RestController()
+@RequestMapping("pc/base/course")
 public class YxCourseInfoController implements YxCourseInfoControllerApi {
 
     @Autowired

@@ -33,6 +33,7 @@ mybatis-plus:
   configuration:
     log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
   mapper-locations: classpath*:com/ketai/activity/**/xml/*Mapper.xml
+  type-aliases-package: com.ketai.model.domain.families
 #eureka:
 #  client:
 #    registerWithEureka: true #服务注册开关

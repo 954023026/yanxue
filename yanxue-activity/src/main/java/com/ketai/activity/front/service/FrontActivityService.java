@@ -2,6 +2,7 @@ package com.ketai.activity.front.service;
 
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.ketai.common.response.Result;
 import com.ketai.model.domain.YxActivity;
 import com.ketai.common.query.pcQuery.PcActivityQuery;
 
@@ -25,4 +26,13 @@ public interface FrontActivityService extends IService<YxActivity> {
      * @param id
      */
     void getActivityDetailsByid(Integer id);
+
+    /**
+     * 查询数据总览
+     * @param year
+     * @return
+     * @auther 李佐威
+     */
+    Result selDataOverview(String year);
+
 }

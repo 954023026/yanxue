@@ -8,6 +8,7 @@ import com.ketai.common.response.ResultListPage;
 import com.ketai.model.domain.YxUndertakeOrg;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
@@ -15,7 +16,8 @@ import java.util.List;
 /**
  * 研学承办机构信息
  */
-@RestController("pc/base/undertakeOrg")
+@RestController()
+@RequestMapping("pc/base/undertakeOrg")
 public class YxUndertakeOrgController implements YxUndertakeOrgApi {
 
     @Autowired
