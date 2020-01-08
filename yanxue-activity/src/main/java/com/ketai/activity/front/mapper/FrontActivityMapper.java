@@ -13,4 +13,13 @@ import com.ketai.model.domain.YxActivity;
  */
 public interface FrontActivityMapper extends BaseMapper<YxActivity> {
 
+    /**
+     * 累计开展研学学校
+     * @param year
+     * @return
+     */
+    Integer selCarryOutSchool(String year);
+
+    Integer selNumberOfTeaAndStu(String year);
+
 }
