@@ -3,11 +3,10 @@ package com.ketai.activity.front.service.impl;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import com.ketai.activity.front.mapper.YxActivityMapper;
-import com.ketai.activity.front.service.YxActivityService;
-import com.ketai.common.response.ResultListPage;
+import com.ketai.activity.front.mapper.FrontActivityMapper;
+import com.ketai.activity.front.service.FrontActivityService;
 import com.ketai.model.domain.YxActivity;
-import com.ketai.model.domain.pcQuery.PcActivityQuery;
+import com.ketai.common.query.pcQuery.PcActivityQuery;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
@@ -20,7 +19,7 @@ import org.springframework.util.StringUtils;
  * @since 2020-01-06
  */
 @Service
-public class YxActivityServiceImpl extends ServiceImpl<YxActivityMapper, YxActivity> implements YxActivityService {
+public class FrontActivityServiceImpl extends ServiceImpl<FrontActivityMapper, YxActivity> implements FrontActivityService {
 
     //分页查询
     @Override
