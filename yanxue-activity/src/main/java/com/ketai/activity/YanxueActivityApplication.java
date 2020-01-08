@@ -7,10 +7,9 @@ import org.springframework.context.annotation.ComponentScan;
 
 
 @SpringBootApplication
-@MapperScan("com.ketai.activity.**")
+//@MapperScan("com.ketai.activity.**")
 @ComponentScan(basePackages={"com.ketai.api.**","com.ketai.activity.**"})//扫描接口
 public class YanxueActivityApplication {
-
     public static void main(String[] args) {
         SpringApplication.run(YanxueActivityApplication.class, args);
     }

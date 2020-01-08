@@ -14,6 +14,12 @@ import java.io.Serializable;
 public class YxActivityQuery implements Serializable {
     private static final long serialVersionUID = 1L;
 
+    @ApiModelProperty(value = "研学主键ID")
+    private Integer id;
+
+    @ApiModelProperty(value = "学校id")
+    private Integer schId;
+
     @ApiModelProperty(value = "基地名称，模糊查询")
     private String baseName;
 

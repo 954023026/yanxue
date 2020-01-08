@@ -14,7 +14,6 @@ import org.apache.ibatis.annotations.Mapper;
  * @author 研学旅行网项目组
  * @since 2020-01-06
  */
-@Mapper
 public interface YxActivityService extends IService<YxActivity> {
     /**
      * 研学活动分页查询
@@ -22,4 +21,5 @@ public interface YxActivityService extends IService<YxActivity> {
      * @param yxActivityQuery
      */
     void selectPage(Page<YxActivity> pageParm, YxActivityQuery yxActivityQuery);
+
 }
