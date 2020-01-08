@@ -29,7 +29,7 @@ public interface SchoolControllerApi {
 
     @ApiOperation("添加研学活动申报信息")
     public Result insert(
-            @ApiParam(name = "yxActivity",value = "研学活动对象",required = true)YxActivity yxActivity
+            @ApiParam(name = "yxActivityQuery",value = "研学活动拓展对象",required = true) YxActivityQuery yxActivityQuery
     );
 }
 
