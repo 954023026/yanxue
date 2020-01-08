@@ -11,9 +11,10 @@ import com.ketai.activity.school.service.YxActivityService;
 import com.ketai.model.domain.YxActivity;
 import com.ketai.model.domain.YxActivityRecord;
 import com.ketai.model.domain.families.ext.ActivityCount;
-import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+import org.springframework.util.StringUtils;
 
 /**
  * <p>
@@ -24,6 +25,7 @@ import org.springframework.stereotype.Service;
  * @since 2020-01-06
  */
 @Service
+@Transactional
 public class YxActivityServiceImpl extends ServiceImpl<YxActivityMapper, YxActivity> implements YxActivityService {
 
     @Autowired
@@ -41,35 +43,36 @@ public class YxActivityServiceImpl extends ServiceImpl<YxActivityMapper, YxActiv
     @Override
     public void selectPage(Page<YxActivity> pageParm, YxActivityQuery yxActivityQuery) {
         QueryWrapper<YxActivity> queryWrapper = new QueryWrapper<>();
-        //queryWrapper.orderByAsc("sort");
-        if (yxActivityQuery == null) {
+//        queryWrapper.orderByAsc("sort");
+        if (queryWrapper == null) {
             baseMapper.selectPage(pageParm, queryWrapper);
             return;
         }
         //获取研学活动主键id
-        String id=yxActivityQuery.getId();
-        //获取研学基地名称查询条件
+        Integer id=yxActivityQuery.getId();
+        //获取研学基地名称查询条件024.
         String baseName = yxActivityQuery.getBaseName();
         //获取承办基地名称查询条件
         String organizationName = yxActivityQuery.getOrganizationName();
         //获取审批状态查询条件
-        String auditStatus = yxActivityQuery.getAuditStatus();
+        Integer auditStatus = yxActivityQuery.getAuditStatus();
         //获取研学主题名称模糊查询条件
         String activityName = yxActivityQuery.getActivityName();
+
         //条件查询
-        if (StringUtils.isNotBlank(id)) {
+        if (!StringUtils.isEmpty(id)){
             queryWrapper.eq("id", id);
         }
-        if (StringUtils.isNotBlank(baseName)) {
+        if (!StringUtils.isEmpty(baseName)) {
             queryWrapper.like("base_name", baseName);
         }
-        if (StringUtils.isNotBlank(organizationName)) {
+        if (!StringUtils.isEmpty(organizationName)) {
             queryWrapper.eq("organization_name", organizationName);
         }
-        if (StringUtils.isNotBlank(auditStatus)) {
+        if (!StringUtils.isEmpty(auditStatus)) {
             queryWrapper.eq("audit_status", auditStatus);
         }
-        if (StringUtils.isNotBlank(activityName)) {
+        if (!StringUtils.isEmpty(activityName)) {
             queryWrapper.like("activity_name", activityName);
         }
         baseMapper.selectPage(pageParm, queryWrapper);
@@ -87,7 +90,7 @@ public class YxActivityServiceImpl extends ServiceImpl<YxActivityMapper, YxActiv
         QueryWrapper<YxActivity> queryWrapper = new QueryWrapper();
         QueryWrapper<YxActivity> queryWrapper2 = new QueryWrapper<>();
         QueryWrapper<YxActivityRecord> queryWrapper1 = new QueryWrapper<>();
-        if (StringUtils.isNotBlank(schyear)) {
+        if (StringUtils.isEmpty(schyear)) {
             queryWrapper2.eq("schyear", schyear);
             queryWrapper.eq("schyear", schyear);
             queryWrapper1.eq("schyear_term", schyear);
@@ -112,6 +115,4 @@ public class YxActivityServiceImpl extends ServiceImpl<YxActivityMapper, YxActiv
         statisticsCount.setAllRecordNumber(recodeNumber);
         return statisticsCount;
     }
-
-
 }

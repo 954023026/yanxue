@@ -22,5 +22,10 @@ public interface YxActivityService extends IService<YxActivity> {
      */
     void selectPage(Page<YxActivity> pageParm, YxActivityQuery yxActivityQuery);
 
+    /**
+     * 根据学年查询
+     * @param schyear
+     * @return
+     */
     ActivityCount findActivityNum(String schyear);
 }

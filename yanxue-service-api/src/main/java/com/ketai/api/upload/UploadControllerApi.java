@@ -11,7 +11,7 @@ import org.springframework.web.multipart.MultipartFile;
  *
  **/
 @Api(value = "文件管理服务", description = "阿里云文件管理中心")
-public interface UploadControollerApi {
+public interface UploadControllerApi {
 
     @ApiOperation("图片上传")
     public Result image(

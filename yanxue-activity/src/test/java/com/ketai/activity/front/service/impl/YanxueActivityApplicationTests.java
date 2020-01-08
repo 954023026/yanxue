@@ -1,4 +1,4 @@
-package com.ketai.activity;
+package com.ketai.activity.front.service.impl;
 
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.ketai.activity.front.service.FrontActivityService;

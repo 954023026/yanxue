@@ -1,22 +1,20 @@
 package com.ketai.common.response;
 
-import com.baomidou.mybatisplus.extension.api.R;
 import com.ketai.common.constants.ResultCodeEnum;
 import com.ketai.common.model.response.ResponseResult;
-import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
-import org.springframework.http.ResponseEntity;
 
 import java.util.HashMap;
 import java.util.Map;
 
 @Data
 public class ResultMap extends ResponseResult {
-    @ApiModelProperty(value = "返回数据")
-    private Map<String, Object> data = new HashMap<String, Object>();
 
-    private ResultMap() {
+    @ApiModelProperty(value = "返回数据")
+    public Map<String, Object> data = new HashMap<String, Object>();
+
+    public ResultMap() {
     }
 
     public static ResultMap ok() {

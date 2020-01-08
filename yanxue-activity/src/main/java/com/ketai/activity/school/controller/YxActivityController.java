@@ -8,6 +8,8 @@ import com.ketai.activity.school.service.YxActivityService;
 import com.ketai.common.response.Result;
 import com.ketai.common.response.ResultListPage;
 import com.ketai.model.domain.YxActivity;
+import io.swagger.annotations.ApiParam;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -36,7 +38,6 @@ public class YxActivityController implements SchoolControllerApi {
     public Result selectPage(
             @RequestParam("nowPage") Integer nowPage,
             @RequestParam("pageSize") Integer pageSize,
-
             YxActivityQuery yxActivityQuery
     ) {
         System.out.println("--开始研学活动分页查询--");
@@ -52,13 +53,19 @@ public class YxActivityController implements SchoolControllerApi {
     /**
      * 添加研学活动申报信息
      *
-     * @param yxActivity
+     * @param yxActivityQuery
      * @return
      */
     @PutMapping("insert")
     @Override
-    public Result insert(@RequestBody YxActivity yxActivity) {
+    public Result insert(@ApiParam YxActivityQuery yxActivityQuery) {
+        System.out.println("开始新增申报信息");
+        YxActivity yxActivity = new YxActivity();
+        BeanUtils.copyProperties(yxActivityQuery,yxActivity);
+        //创建研学活动保存申报信息，默认审批状态为：未提交
+        yxActivity.setAuditStatus(1);
         yxActivityService.save(yxActivity);
+        System.out.println("测试是否新增成功："+yxActivity);
         return Result.ok();
     }
 }
