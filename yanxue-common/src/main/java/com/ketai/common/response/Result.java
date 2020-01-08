@@ -5,8 +5,10 @@ import com.ketai.common.model.response.ResponseResult;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
+import lombok.ToString;
 
 @Data
+@ToString
 public class Result<T> extends ResponseResult {
 
     @ApiModelProperty(value = "返回数据")

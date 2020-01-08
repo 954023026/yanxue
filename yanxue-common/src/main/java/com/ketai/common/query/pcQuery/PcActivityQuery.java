@@ -1,4 +1,4 @@
-package com.ketai.model.domain.pcQuery;
+package com.ketai.common.query.pcQuery;
 
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;

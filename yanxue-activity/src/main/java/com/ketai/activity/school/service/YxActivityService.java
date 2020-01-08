@@ -4,7 +4,7 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.ketai.common.query.YxActivityQuery;
 import com.ketai.model.domain.YxActivity;
-import org.apache.ibatis.annotations.Mapper;
+import com.ketai.model.domain.families.ext.ActivityCount;
 
 /**
  * <p>
@@ -22,4 +22,5 @@ public interface YxActivityService extends IService<YxActivity> {
      */
     void selectPage(Page<YxActivity> pageParm, YxActivityQuery yxActivityQuery);
 
+    ActivityCount findActivityNum(String schyear);
 }
