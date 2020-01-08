@@ -58,7 +58,7 @@ public class YxActivityServiceImpl extends ServiceImpl<YxActivityMapper, YxActiv
         String activityName = yxActivityQuery.getActivityName();
 
         //条件查询
-        if (!StringUtils.isEmpty(id)) {
+        if (!StringUtils.isEmpty(id.toString())) {
             queryWrapper.eq("id", id);
         }
         if (!StringUtils.isEmpty(baseName)) {

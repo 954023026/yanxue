@@ -10,7 +10,7 @@ import com.baomidou.mybatisplus.extension.plugins.PerformanceInterceptor;
  * 单数据源配置（jeecg.datasource.open = false时生效）
  */
 @Configuration
-@MapperScan(value={"com.ketai.activity.**.mapper*"})
+@MapperScan(value={"com.ketai.activity.**.mapper"})
 public class MybatisPlusConfig {
 
     /**
