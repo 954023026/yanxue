@@ -1,11 +1,15 @@
 package com.ketai.activity.families.controller;
 
-import com.ketai.activity.families.vo.ActivityCount;
+import com.ketai.activity.school.service.YxActivityService;
+import com.ketai.activity.school.service.impl.YxActivityServiceImpl;
+import com.ketai.model.domain.families.ext.ActivityCount;
 import com.ketai.api.admin.AdminActivityControllerApi;
 import com.ketai.common.response.Result;
-import com.ketai.common.response.ResultListPage;
+import io.swagger.annotations.ApiParam;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
@@ -18,11 +22,22 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/admin/activity/")
 public class AdminActivityController implements AdminActivityControllerApi {
 
+    @Autowired
+    private YxActivityService activityService;
+
     @PostMapping("getActivityStatisticsCount")
     @Override
-    public Result getActivityStatisticsCount(){
-
-        return Result.ok(new ActivityCount());
+    public Result getActivityStatisticsCount(
+            @RequestParam(value = "schyear",required = false) String schyear
+    ){
+        ActivityCount activityNum = activityService.findActivityNum(schyear);
+        return Result.ok(activityNum);
     }
 
+    @Override
+    public Result activityStatistics() {
+
+
+        return Result.ok();
+    }
 }

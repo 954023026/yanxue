@@ -17,7 +17,7 @@ import java.util.List;
 @SpringBootTest
 public class YanxueActivityApplicationTests {
     @Autowired
-//    private YxActivityService yxActivityService;
+//    private FrontActivityService yxActivityService;
 
     @Test
     public void testSelectPage() {

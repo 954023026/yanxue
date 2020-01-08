@@ -11,6 +11,6 @@ import com.ketai.model.domain.YxActivity;
  * @author 研学旅行网项目组
  * @since 2020-01-06
  */
-public interface YxActivityMapper extends BaseMapper<YxActivity> {
+public interface FrontActivityMapper extends BaseMapper<YxActivity> {
 
 }

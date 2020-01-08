@@ -2,6 +2,7 @@ package com.ketai.activity.school.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.ketai.model.domain.YxActivity;
+import org.apache.ibatis.annotations.Param;
 
 /**
  * <p>
@@ -12,4 +13,11 @@ import com.ketai.model.domain.YxActivity;
  * @since 2020-01-06
  */
 public interface YxActivityMapper extends BaseMapper<YxActivity> {
+
+    /**
+     * 查询师生参与研学实践人次
+     */
+    Integer selectAllPeopleNumber(@Param("schyear") String schyear);
+
+    Integer selectAllSchNumber(@Param("schyear") String schyear);
 }

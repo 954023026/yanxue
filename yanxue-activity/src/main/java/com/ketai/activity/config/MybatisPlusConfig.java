@@ -8,8 +8,6 @@ import com.baomidou.mybatisplus.extension.plugins.PerformanceInterceptor;
 
 /**
  * 单数据源配置（jeecg.datasource.open = false时生效）
- * @Author zhoujf
- *
  */
 @Configuration
 @MapperScan(value={"com.ketai.activity.**.mapper*"})

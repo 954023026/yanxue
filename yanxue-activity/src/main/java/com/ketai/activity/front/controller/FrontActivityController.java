@@ -1,7 +1,7 @@
 package com.ketai.activity.front.controller;
 
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
-import com.ketai.activity.front.service.YxActivityService;
+import com.ketai.activity.front.service.FrontActivityService;
 import com.ketai.api.front.FrontActivityControllerApi;
 import com.ketai.common.constants.ResultCodeEnum;
 import com.ketai.common.exception.KetaiException;
@@ -21,7 +21,7 @@ import java.util.List;
 @RequestMapping("pc/activity/selectPage")
 public class FrontActivityController implements FrontActivityControllerApi {
     @Autowired
-    private YxActivityService yxActivityService;
+    private FrontActivityService yxActivityService;
 
     @PostMapping("{page}/{limit}")
     @Override

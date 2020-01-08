@@ -14,7 +14,7 @@ import com.ketai.model.domain.pcQuery.PcActivityQuery;
  * @author 研学旅行网项目组
  * @since 2020-01-06
  */
-public interface YxActivityService extends IService<YxActivity> {
+public interface FrontActivityService extends IService<YxActivity> {
     /**
      * 条件、分页查询
      * @param pcActivityQuery 查询条件对象
