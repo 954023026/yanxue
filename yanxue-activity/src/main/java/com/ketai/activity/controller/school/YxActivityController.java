@@ -2,9 +2,9 @@ package com.ketai.activity.controller.school;
 
 
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.ketai.activity.service.YxActivityService;
 import com.ketai.api.school.SchoolControllerApi;
 import com.ketai.common.query.YxActivityQuery;
-import com.ketai.activity.school.service.YxActivityService;
 import com.ketai.common.response.Result;
 import com.ketai.common.response.ResultListPage;
 import com.ketai.model.domain.YxActivity;

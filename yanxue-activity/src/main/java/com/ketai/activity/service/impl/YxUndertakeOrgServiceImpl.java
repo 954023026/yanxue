@@ -4,6 +4,8 @@ package com.ketai.activity.service.impl;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.ketai.activity.mapper.YxUndertakeOrgMapper;
+import com.ketai.activity.service.YxUndertakeOrgService;
 import com.ketai.model.domain.YxUndertakeOrg;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Service;

@@ -1,6 +1,7 @@
 package com.ketai.activity.controller.admin;
 
 
+import com.ketai.activity.service.YxActivityRecordService;
 import com.ketai.api.admin.AdminActivityRecordControllerApi;
 import com.ketai.common.response.Result;
 import org.springframework.beans.factory.annotation.Autowired;

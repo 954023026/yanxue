@@ -1,6 +1,6 @@
 package com.ketai.activity.controller.admin;
 
-import com.ketai.activity.school.service.YxActivityService;
+import com.ketai.activity.service.YxActivityService;
 import com.ketai.model.domain.families.ext.ActivityCount;
 import com.ketai.api.admin.AdminActivityControllerApi;
 import com.ketai.common.response.Result;
