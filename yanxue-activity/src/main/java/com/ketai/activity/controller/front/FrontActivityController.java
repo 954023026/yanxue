@@ -7,13 +7,17 @@ import com.ketai.common.constants.ResultCodeEnum;
 import com.ketai.common.exception.KetaiException;
 import com.ketai.common.response.Result;
 import com.ketai.common.response.ResultListPage;
+import com.ketai.common.response.ResultMap;
 import com.ketai.model.domain.YxActivity;
 import com.ketai.common.query.pcQuery.PcActivityQuery;
+import com.ketai.model.domain.families.ext.ActivityCount;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.Map;
 
 @RestController
 @RequestMapping("pc/activity")
@@ -40,12 +44,30 @@ public class FrontActivityController implements FrontActivityControllerApi {
                         pageParam.getRecords(),pageParam.getPages(),
                         pageParam.getTotal(),pageParam.getCurrent(),pageParam.getSize()));
     }
-
+    @PostMapping("activityDetails")
     @Override
-    public Result selectById(Integer id) {
-        frontActivityService.getActivityDetailsByid(id);
-        return null;
+    public ResultMap selectById(Integer id) {
+        return frontActivityService.getActivityDetailsByid(id);
     }
 
+    @PostMapping("getSelectItem")
+    @Override
+    public Result getSelectItem() {
+        Map<String, Object> result = frontActivityService.getSelectItem();
+        return Result.ok(result);
 
+    }
+
+    @PostMapping("getAllSchYear")
+    @Override
+    public Result getAllSchYear() {
+        return frontActivityService.getAllSchYear();
+    }
+
+    @PostMapping("getActivityStatisticsCount")
+    @Override
+    public Result getActivityStatisticsCount(String schyear) {
+        ActivityCount activityStatisticsCount = frontActivityService.getActivityStatisticsCount(schyear);
+        return Result.ok().data(activityStatisticsCount);
+    }
 }
