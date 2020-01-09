@@ -3,7 +3,7 @@ package com.ketai.activity.front.service.impl;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.ketai.activity.front.service.FrontActivityService;
 import com.ketai.activity.school.service.YxActivityService;
-import com.ketai.activity.school.service.impl.YxActivityServiceImpl;
+import com.ketai.activity.service.impl.YxActivityServiceImpl;
 import com.ketai.common.query.YxActivityQuery;
 import com.ketai.model.domain.YxActivity;
 import org.junit.Test;

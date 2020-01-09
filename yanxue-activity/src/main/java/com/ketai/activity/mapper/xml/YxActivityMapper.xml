@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ketai.activity.mapper.YxActivityMapper">
+
+    <select id="selectAllPeopleNumber" resultType="java.lang.Integer" parameterType="String">
+        SELECT SUM(student_number)+SUM(team_teacher_number) FROM yx_activity WHERE audit_status = 6
+        <if test="schyear != null and schyear != ''">
+            and schyear = #{schyear}
+        </if>
+    </select>
+    <select id="selectAllSchNumber" resultType="java.lang.Integer" parameterType="String">
+        SELECT COUNT(*) FROM (SELECT sch_id FROM yx_activity WHERE audit_status = 6
+        <if test="schyear != null and schyear != ''">
+            and schyear = #{schyear}
+        </if>
+        GROUP BY sch_id ) yx_activity;
+    </select>
+
+</mapper>

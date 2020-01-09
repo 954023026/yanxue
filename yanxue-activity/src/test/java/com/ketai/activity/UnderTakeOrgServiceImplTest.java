@@ -1,7 +1,6 @@
 package com.ketai.activity;
 
-import com.ketai.activity.orgin.mapper.YxUndertakeOrgMapper;
-import com.ketai.model.domain.YxUndertakeOrg;
+import com.ketai.activity.mapper.YxUndertakeOrgMapper;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
