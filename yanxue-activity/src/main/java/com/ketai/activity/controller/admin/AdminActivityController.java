@@ -1,5 +1,6 @@
 package com.ketai.activity.controller.admin;
 
+import com.ketai.activity.service.YxActivityService;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.ketai.activity.service.YxActivityService;
 import com.ketai.common.query.YxActivityQuery;
@@ -107,5 +108,10 @@ public class AdminActivityController implements AdminActivityControllerApi {
        }catch (Exception e){
            return Result.error().message("未知错误");
        }
+    }
+
+    @Override
+    public YxActivity activityInfo(Integer id) {
+        return null;
     }
 }

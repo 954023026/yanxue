@@ -1,8 +1,7 @@
 package com.ketai.activity.mapper;
 
-
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
-import com.ketai.model.domain.YxBaseInfo;
+import com.ketai.model.domain.YxBaseOrgan;
 import org.springframework.stereotype.Repository;
 
 /**
@@ -14,6 +13,6 @@ import org.springframework.stereotype.Repository;
  * @since 2020-01-06
  */
 @Repository
-public interface YxBaseInfoMapper extends BaseMapper<YxBaseInfo> {
+public interface YxBaseOrganMapper extends BaseMapper<YxBaseOrgan> {
 
 }
