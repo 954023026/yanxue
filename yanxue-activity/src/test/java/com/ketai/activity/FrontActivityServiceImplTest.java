@@ -14,8 +14,6 @@ public class FrontActivityServiceImplTest {
     @Autowired
     private FrontActivityMapper frontActivityMapper;
 
-
-
     @Test
     public void testCarryOutSchool(){
         int i = frontActivityMapper.selCarryOutSchool("2019");
@@ -28,8 +26,4 @@ public class FrontActivityServiceImplTest {
         System.out.println("————————Number"+i);
     }
 
-    @Test
-    public void testSelDataOverview() {
-
-    }
 }

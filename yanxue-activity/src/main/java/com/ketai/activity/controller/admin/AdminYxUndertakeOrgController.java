@@ -17,7 +17,7 @@ import java.util.UUID;
  */
 @RestController()
 @RequestMapping("admin/base/undertakeOrg")
-public class YxUndertakeOrgController implements YxUndertakeOrgControllerApi {
+public class AdminYxUndertakeOrgController implements YxUndertakeOrgControllerApi {
 
     @Autowired
     private YxUndertakeOrgService yxUndertakeOrgService;

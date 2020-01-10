@@ -1,9 +1,7 @@
 package com.ketai.activity.controller.admin;
 
 import com.ketai.activity.service.YxActivityService;
-import com.ketai.activity.service.YxActivityService;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
-import com.ketai.activity.service.YxActivityService;
 import com.ketai.common.query.YxActivityQuery;
 import com.ketai.common.response.ResultListPage;
 import com.ketai.model.domain.YxActivity;
