@@ -1,7 +1,7 @@
 package com.ketai.activity;
 
 
-import com.ketai.activity.front.service.FrontYxActivityRecordService;
+import com.ketai.activity.service.FrontYxActivityRecordService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;

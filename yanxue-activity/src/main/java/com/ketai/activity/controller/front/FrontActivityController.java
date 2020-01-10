@@ -27,18 +27,18 @@ public class FrontActivityController implements FrontActivityControllerApi {
             @PathVariable Integer page,
             @PathVariable Integer limit,
             PcActivityQuery pcActivityQuery) {
-        if (page<=0||limit<=0){
+        if (page <= 0 || limit <= 0) {
             //21003 参数错误
             throw new KetaiException(ResultCodeEnum.PARAM_ERROR);
         }
 
-        Page<YxActivity> pageParam=new Page<>(page,limit);
-        frontActivityService.pageQuery(pageParam,pcActivityQuery);
+        Page<YxActivity> pageParam = new Page<>(page, limit);
+        frontActivityService.pageQuery(pageParam, pcActivityQuery);
         System.out.println(pageParam.getTotal());
         return Result.ok(
                 new ResultListPage(
-                        pageParam.getRecords(),pageParam.getPages(),
-                        pageParam.getTotal(),pageParam.getCurrent(),pageParam.getSize()));
+                        pageParam.getRecords(), pageParam.getPages(),
+                        pageParam.getTotal(), pageParam.getCurrent(), pageParam.getSize()));
     }
 
     @Override

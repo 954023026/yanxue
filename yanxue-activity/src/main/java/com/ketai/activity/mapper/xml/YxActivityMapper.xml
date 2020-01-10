@@ -15,5 +15,12 @@
         </if>
         GROUP BY sch_id ) yx_activity;
     </select>
-
+    <select id="findByPage" resultType="com.ketai.model.domain.families.response.ActivityVo">
+        SELECT a.*,COUNT(r.`activity_id`) AS recordNumber FROM yx_activity a
+        LEFT JOIN yx_activity_record r
+        ON a.`id`=r.`activity_id`
+        <where>${ew.sqlSegment}</where>
+        GROUP BY a.`id`
+        ORDER BY create_time DESC
+    </select>
 </mapper>

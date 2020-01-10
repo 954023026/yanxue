@@ -1,6 +1,6 @@
 package com.ketai.activity;
 
-import com.ketai.activity.front.mapper.FrontActivityMapper;
+import com.ketai.activity.mapper.FrontActivityMapper;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;

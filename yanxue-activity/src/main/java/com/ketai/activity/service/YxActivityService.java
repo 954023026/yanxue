@@ -5,6 +5,10 @@ import com.baomidou.mybatisplus.extension.service.IService;
 import com.ketai.common.query.YxActivityQuery;
 import com.ketai.model.domain.YxActivity;
 import com.ketai.model.domain.families.ext.ActivityCount;
+import com.ketai.model.domain.families.request.ActivityRequest;
+import com.ketai.model.domain.families.response.ActivityVo;
+
+import java.util.List;
 
 /**
  * <p>
@@ -28,4 +32,14 @@ public interface YxActivityService extends IService<YxActivity> {
      * @return
      */
     ActivityCount findActivityNum(String schyear);
+
+
+    /**
+     * 分页查询研学信息
+     * @param pageParam
+     * @param activityRequest
+     */
+    List<ActivityVo> pageStatisticsQuery(Page<ActivityVo> pageParam, ActivityRequest activityRequest);
+
+    List<String> getAllSchYear();
 }

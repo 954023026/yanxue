@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ketai.activity.mapper.YxEvaluateInfoMapper">
+
+    <select id="findEvaluatePage" resultType="com.ketai.model.domain.families.response.EvaluateInfoVo">
+        SELECT AVG(score) AS score,COUNT(base_id) AS cnt,AVG(undertake_service_score) AS undertakeServiceScore ,AVG(base_manage_score) AS baseManageScore, AVG(course_score) AS courseScore, AVG(safety_score) AS safetyScore,AVG(service_score) AS serviceScore,e.base_id,b.base_name
+        FROM yx_evaluate_info e
+        LEFT JOIN yx_base_info AS  b  ON e.base_id=b.id
+        <where>${ew.sqlSegment}</where>
+        GROUP BY e.base_id
+    </select>
+</mapper>

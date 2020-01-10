@@ -2,8 +2,6 @@ package com.ketai.common.constant;
 
 /**
  * 	研学活动审核状态
- * @Author LeeShaoQing
- *
  */
 public interface CommonAuditStatus {
 	/**

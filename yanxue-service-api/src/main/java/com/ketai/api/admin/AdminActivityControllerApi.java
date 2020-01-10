@@ -1,6 +1,7 @@
 package com.ketai.api.admin;
 
 import com.ketai.common.response.Result;
+import com.ketai.model.domain.families.request.ActivityRequest;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
@@ -19,5 +20,5 @@ public interface AdminActivityControllerApi {
 
 
     @ApiOperation("活动统计")
-    public Result activityStatistics();
+    public Result activityStatistics(@ApiParam(name = "activityRequest", value = "查询对象", required = true) ActivityRequest activityRequest);
 }

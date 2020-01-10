@@ -2,12 +2,11 @@ package com.ketai.activity;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 import org.springframework.context.annotation.ComponentScan;
 
 
 @SpringBootApplication
-@EnableDiscoveryClient
+//@EnableDiscoveryClient
 @ComponentScan(basePackages={"com.ketai.api.**","com.ketai.activity.**",
         "com.ketai.model.domain"})//扫描接口
 public class YanxueActivityApplication {

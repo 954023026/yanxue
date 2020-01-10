@@ -47,7 +47,6 @@ public class YxActivityController implements SchoolControllerApi {
         return Result.ok(
                 new ResultListPage(
                         records, pageParam.getPages(), pageParam.getTotal(), pageParam.getCurrent(), pageParam.getSize()));
-
     }
 
     /**
