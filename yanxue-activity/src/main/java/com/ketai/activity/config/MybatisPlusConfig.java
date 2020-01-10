@@ -16,6 +16,12 @@ import com.baomidou.mybatisplus.extension.plugins.PerformanceInterceptor;
 @MapperScan(value={"com.ketai.activity.mapper"})
 public class MybatisPlusConfig {
 
+    @Bean
+    public PaginationInterceptor paginationInterceptor() {
+        PaginationInterceptor page = new PaginationInterceptor();
+        page.setDialectType("mysql");
+        return page;
+    }
     /**
      *  分页插件
      */

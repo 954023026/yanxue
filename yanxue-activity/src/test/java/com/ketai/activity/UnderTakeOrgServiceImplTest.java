@@ -1,6 +1,10 @@
 package com.ketai.activity;
 
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.ketai.activity.mapper.YxUndertakeOrgMapper;
+import com.ketai.activity.service.YxActivityService;
+import com.ketai.common.query.YxActivityQuery;
+import com.ketai.model.domain.YxActivity;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;

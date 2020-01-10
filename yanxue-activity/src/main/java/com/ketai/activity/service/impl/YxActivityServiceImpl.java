@@ -43,7 +43,7 @@ public class YxActivityServiceImpl extends ServiceImpl<YxActivityMapper, YxActiv
     @Override
     public void selectPage(Page<YxActivity> pageParm, YxActivityQuery yxActivityQuery) {
         QueryWrapper<YxActivity> queryWrapper = new QueryWrapper<>();
-//        queryWrapper.orderByAsc("sort");
+        queryWrapper.orderByDesc("id");
         if (queryWrapper == null) {
             baseMapper.selectPage(pageParm, queryWrapper);
             return;
@@ -116,5 +116,32 @@ public class YxActivityServiceImpl extends ServiceImpl<YxActivityMapper, YxActiv
         return statisticsCount;
 
 
+    }
+
+    /**
+     * 根据id查询研学活动信息
+     * @param id
+     * @return
+     */
+    @Override
+    public YxActivity activityInfo(Integer id) {
+        System.out.println("获取的id："+id);
+        return  baseMapper.selectById(id);
+    }
+
+
+    /**
+     * 根据研学活动id更改审批状态
+     * @param id
+     */
+    @Override
+    public void submitActivity(Integer id) {
+        System.out.println("测试获取的研学活动id："+id);
+        YxActivity yxActivity =new YxActivity();
+        yxActivity.setId(id);
+        //更改状态为2：待学生科审批
+        yxActivity.setAuditStatus(2);
+        System.out.println("测试："+yxActivity);
+        baseMapper.updateById(yxActivity);
     }
 }

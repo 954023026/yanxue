@@ -28,4 +28,16 @@ public interface YxActivityService extends IService<YxActivity> {
      * @return
      */
     ActivityCount findActivityNum(String schyear);
+
+    /**
+     * 根据id查询研学活动信息
+     * @return
+     */
+    YxActivity activityInfo(Integer id);
+
+    /**
+     * 根据研学活动id更改审批状态
+     * @param id
+     */
+    void submitActivity(Integer id);
 }
