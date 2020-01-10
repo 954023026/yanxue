@@ -18,6 +18,23 @@ import java.util.List;
 @AllArgsConstructor
 public class ResultListPage<T> implements Serializable {
 
+
+
+    /**
+     * 后台研学基地、研学课程、研学承办机构新增时需要名为 model 的返回值
+     */
+    public ResultListPage(T model) {
+        this.model = model;
+    }
+
+    public ResultListPage(T datalist, long allPage, long allCount, long nowPage, long pageSize) {
+        this.datalist = datalist;
+        this.allPage = allPage;
+        this.allCount = allCount;
+        this.nowPage = nowPage;
+        this.pageSize = pageSize;
+    }
+    private T model;
     private T datalist;
     private long allPage;
     private long allCount;

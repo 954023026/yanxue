@@ -1,9 +1,8 @@
 package com.ketai.aliyunoss.controller;
 
-import com.ketai.api.upload.UploadControollerApi;
+import com.ketai.api.upload.UploadControllerApi;
 import com.ketai.common.response.Result;
 import com.ketai.aliyunoss.service.FileService;
-import io.swagger.annotations.ApiParam;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
@@ -14,7 +13,7 @@ import org.springframework.web.multipart.MultipartFile;
 @CrossOrigin //跨域
 @RestController
 @RequestMapping("/upload")
-public class FileController implements UploadControollerApi {
+public class FileController implements UploadControllerApi {
     @Autowired
     private FileService fileService;
 

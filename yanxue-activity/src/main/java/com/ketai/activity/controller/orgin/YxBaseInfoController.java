@@ -7,9 +7,7 @@ import com.ketai.common.response.Result;
 import com.ketai.common.response.ResultListPage;
 import com.ketai.model.domain.YxBaseInfo;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -24,9 +22,11 @@ public class YxBaseInfoController implements YxBaseInfoControllerApi {
     private YxBaseInfoService yxBaseInfoService;
 
     //根据基地名称分页查询
-    @GetMapping("/qryBaseInfoPageList")
+    @PostMapping("/qryBaseInfoPageList")
     @Override
-    public Result PageQuery(String baseName, Integer pageSize, Integer nowPage) {
+    public Result PageQuery(String baseName,
+                            @RequestParam(defaultValue = "5") Integer pageSize,
+                            @RequestParam(defaultValue = "0") Integer nowPage) {
         Page<YxBaseInfo> pageParam = new Page<>(nowPage, pageSize);
         yxBaseInfoService.pageQuery(pageParam,baseName);
         List<YxBaseInfo> records = pageParam.getRecords();

@@ -23,7 +23,14 @@ public class YxUndertakeOrgController implements YxUndertakeOrgApi {
     @Autowired
     private YxUndertakeOrgService yxUndertakeOrgService;
 
-
+    /**
+     * 根据研学基地名称分页查询
+     * @param baseName
+     * @param pageSize
+     * @param nowPage
+     * @return
+     * @auther 李
+     */
     @GetMapping("qryUndertakeOrgInfoPag")
     @Override
     public Result PageQuery(String baseName, Integer pageSize, Integer nowPage) {
@@ -33,6 +40,6 @@ public class YxUndertakeOrgController implements YxUndertakeOrgApi {
         return Result.ok(
                 new ResultListPage(
                         records,pageParam.getPages(),pageParam.getTotal(),pageParam.getCurrent(),pageParam.getSize()));
-
     }
+
 }

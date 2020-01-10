@@ -42,4 +42,16 @@ public interface YxActivityService extends IService<YxActivity> {
     List<ActivityVo> pageStatisticsQuery(Page<ActivityVo> pageParam, ActivityRequest activityRequest);
 
     List<String> getAllSchYear();
+
+    /**
+     * 根据id查询研学活动信息
+     * @return
+     */
+    YxActivity activityInfo(Integer id);
+
+    /**
+     * 根据研学活动id更改审批状态
+     * @param id
+     */
+    void submitActivity(Integer id);
 }

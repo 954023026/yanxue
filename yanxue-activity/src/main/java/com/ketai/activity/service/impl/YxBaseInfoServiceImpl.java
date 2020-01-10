@@ -6,6 +6,8 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.ketai.activity.mapper.YxBaseInfoMapper;
 import com.ketai.activity.service.YxBaseInfoService;
+import com.ketai.common.response.Result;
+import com.ketai.common.response.ResultListPage;
 import com.ketai.model.domain.YxBaseInfo;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Service;
@@ -21,6 +23,11 @@ import org.springframework.stereotype.Service;
 @Service
 public class YxBaseInfoServiceImpl extends ServiceImpl<YxBaseInfoMapper, YxBaseInfo> implements YxBaseInfoService {
 
+    /**
+     * 研学基地分页调价查询
+     * @param pageParam
+     * @param baseInfoName
+     */
     @Override
     public void pageQuery(Page<YxBaseInfo> pageParam, String baseInfoName) {
         QueryWrapper<YxBaseInfo> queryWrapper = new QueryWrapper<>();
@@ -28,5 +35,34 @@ public class YxBaseInfoServiceImpl extends ServiceImpl<YxBaseInfoMapper, YxBaseI
             queryWrapper.like("base_name",baseInfoName);
         }
         baseMapper.selectPage(pageParam,queryWrapper);
+    }
+
+    /**
+     * 研学基地信息新增
+     * @auther 李
+     */
+
+    @Override
+    public Result saveBaseInfo(YxBaseInfo yxBaseInfo) {
+        int insert = baseMapper.insert(yxBaseInfo);
+        if (insert>0){
+            return Result.ok(new ResultListPage(yxBaseInfo));
+        }
+        return Result.error();
+    }
+
+    /**
+     * 研学基地信息修改
+     * @param yxBaseInfo
+     * @return
+     * @auther 李
+     */
+    @Override
+    public Result saveAndflush(YxBaseInfo yxBaseInfo) {
+        int i = baseMapper.updateById(yxBaseInfo);
+        if (i>0){
+            return Result.ok(new ResultListPage(yxBaseInfo));
+        }
+        return Result.error();
     }
 }

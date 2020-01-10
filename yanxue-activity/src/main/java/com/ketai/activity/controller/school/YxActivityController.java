@@ -34,7 +34,7 @@ public class YxActivityController implements SchoolControllerApi {
      * 研学活动分页查询
      */
     @PostMapping("selectPage")
-    @Override
+//    @Override
     public Result selectPage(
             @RequestParam("nowPage") Integer nowPage,
             @RequestParam("pageSize") Integer pageSize,
@@ -56,7 +56,7 @@ public class YxActivityController implements SchoolControllerApi {
      * @return
      */
     @PutMapping("insert")
-    @Override
+//    @Override
     public Result insert(@ApiParam YxActivityQuery yxActivityQuery) {
         System.out.println("开始新增申报信息");
         YxActivity yxActivity = new YxActivity();
