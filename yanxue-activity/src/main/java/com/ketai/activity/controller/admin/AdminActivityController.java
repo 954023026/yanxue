@@ -110,8 +110,15 @@ public class AdminActivityController implements AdminActivityControllerApi {
        }
     }
 
+    /**
+     * 根据id查询研学活动信息
+     * @param id
+     * @return
+     */
+    @PostMapping("activityInfo")
     @Override
-    public YxActivity activityInfo(Integer id) {
-        return null;
+    public Result activityInfo(Integer id) {
+        YxActivity yxActivity = activityService.activityInfo(id);
+        return Result.ok().data(yxActivity);
     }
 }

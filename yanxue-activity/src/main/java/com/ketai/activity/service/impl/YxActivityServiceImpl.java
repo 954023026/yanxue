@@ -116,6 +116,11 @@ public class YxActivityServiceImpl extends ServiceImpl<YxActivityMapper, YxActiv
         return statisticsCount;
     }
 
+    /**
+     * 根据id查询研学活动信息
+     * @param id
+     * @return
+     */
     @Override
     public YxActivity activityInfo(Integer id) {
         System.out.println("获取的id："+id);

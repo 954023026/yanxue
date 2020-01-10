@@ -40,5 +40,5 @@ public interface AdminActivityControllerApi {
     public Result submitActivity(@RequestBody Integer id );
 
     @ApiOperation("根据id查询所有")
-    YxActivity activityInfo(Integer id);
+    Result activityInfo(Integer id);
 }
