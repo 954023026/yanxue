@@ -3,9 +3,9 @@ package com.ketai.activity.service.impl;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import com.ketai.activity.front.mapper.FrontActivityMapper;
-import com.ketai.activity.front.service.FrontActivityService;
-import com.ketai.activity.front.service.FrontYxActivityRecordService;
+import com.ketai.activity.mapper.FrontActivityMapper;
+import com.ketai.activity.service.FrontActivityService;
+import com.ketai.activity.service.FrontYxActivityRecordService;
 import com.ketai.common.response.Result;
 import com.ketai.common.response.ResultMap;
 import com.ketai.model.domain.YxActivity;
@@ -75,7 +75,11 @@ public class FrontActivityServiceImpl extends ServiceImpl<FrontActivityMapper, Y
     }
 
 
-    //数据总览 TODO controlle 暂时未写
+    /**
+     * 数据总览 TODO controlle 暂时未写
+     * @auther 李
+     */
+
     @Override
     public Result selDataOverview(String year) {
         QueryWrapper<YxActivity> q1 = new QueryWrapper<>();
@@ -117,6 +121,5 @@ public class FrontActivityServiceImpl extends ServiceImpl<FrontActivityMapper, Y
         rm.setData(rr);
         return Result.ok(rm);
     }
-
 
 }

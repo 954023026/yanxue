@@ -1,7 +1,7 @@
 package com.ketai.activity.controller.front;
 
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
-import com.ketai.activity.front.service.FrontActivityService;
+import com.ketai.activity.service.FrontActivityService;
 import com.ketai.api.front.FrontActivityControllerApi;
 import com.ketai.common.constants.ResultCodeEnum;
 import com.ketai.common.exception.KetaiException;

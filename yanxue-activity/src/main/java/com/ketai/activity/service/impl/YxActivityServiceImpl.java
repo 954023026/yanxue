@@ -3,8 +3,9 @@ package com.ketai.activity.service.impl;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import com.ketai.activity.school.mapper.YxActivityMapper;
-import com.ketai.activity.school.mapper.YxActivityRecordMapper;
+import com.ketai.activity.mapper.YxActivityMapper;
+import com.ketai.activity.mapper.YxActivityRecordMapper;
+import com.ketai.activity.service.YxActivityService;
 import com.ketai.common.constant.CommonAuditStatus;
 import com.ketai.common.query.YxActivityQuery;
 import com.ketai.model.domain.YxActivity;
@@ -113,5 +114,7 @@ public class YxActivityServiceImpl extends ServiceImpl<YxActivityMapper, YxActiv
         Integer recodeNumber = activityRecordMapper.selectCount(queryWrapper1.eq("TYPE", "record"));
         statisticsCount.setAllRecordNumber(recodeNumber);
         return statisticsCount;
+
+
     }
 }
