@@ -24,7 +24,7 @@ public interface YxUndertakeOrgService extends IService<YxUndertakeOrg> {
      * @param orgname
      * @auther 李
      */
-    void pageQuery(Page<YxUndertakeOrg> pageParam, String orgname);
+    void pageQuery(Page<YxUndertakeOrg> pageParam,Integer id,String orgname);
 
     /**
      * 研学基地新增

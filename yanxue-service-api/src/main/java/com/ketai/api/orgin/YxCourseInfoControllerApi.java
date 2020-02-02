@@ -12,8 +12,10 @@ public interface YxCourseInfoControllerApi {
 
     @ApiOperation("根据课程名称分页查询")
     Result PageQuery(
-            @ApiParam(name = "orgname",value = "基地名称",required = true)
+            @ApiParam(name = "orgname",value = "课程名称",required = false)
                     String baseName,
+            @ApiParam(name = "id",value = "课程id",required = false)
+                    Integer id,
             @ApiParam(name = "pageSize",value = "每页显示数",required = true)
                     Integer pageSize,
             @ApiParam(name = "nowPage",value = "当前页码",required = true)

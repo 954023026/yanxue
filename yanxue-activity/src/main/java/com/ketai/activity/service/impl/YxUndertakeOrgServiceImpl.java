@@ -6,13 +6,11 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.ketai.activity.mapper.YxUndertakeOrgMapper;
 import com.ketai.activity.service.YxUndertakeOrgService;
-import com.ketai.activity.mapper.YxUndertakeOrgMapper;
-import com.ketai.activity.service.YxUndertakeOrgService;
 import com.ketai.common.response.Result;
 import com.ketai.common.response.ResultListPage;
 import com.ketai.model.domain.YxUndertakeOrg;
-import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Service;
+import org.springframework.util.StringUtils;
 
 /**
  * <p>
@@ -32,10 +30,13 @@ public class YxUndertakeOrgServiceImpl extends ServiceImpl<YxUndertakeOrgMapper,
      * @auther 李
      */
     @Override
-    public void pageQuery(Page<YxUndertakeOrg> pageParam, String orgname) {
+    public void pageQuery(Page<YxUndertakeOrg> pageParam,Integer id, String orgname) {
         QueryWrapper<YxUndertakeOrg> queryWrapper = new QueryWrapper<>();
         if(!StringUtils.isEmpty(orgname)){
             queryWrapper.like("orgname",orgname);
+        }
+        if(!StringUtils.isEmpty(id)){
+            queryWrapper.eq("id",id);
         }
         baseMapper.selectPage(pageParam,queryWrapper);
     }

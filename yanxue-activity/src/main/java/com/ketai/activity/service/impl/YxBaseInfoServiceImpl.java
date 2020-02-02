@@ -9,8 +9,8 @@ import com.ketai.activity.service.YxBaseInfoService;
 import com.ketai.common.response.Result;
 import com.ketai.common.response.ResultListPage;
 import com.ketai.model.domain.YxBaseInfo;
-import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Service;
+import org.springframework.util.StringUtils;
 
 /**
  * <p>
@@ -29,10 +29,13 @@ public class YxBaseInfoServiceImpl extends ServiceImpl<YxBaseInfoMapper, YxBaseI
      * @param baseInfoName
      */
     @Override
-    public void pageQuery(Page<YxBaseInfo> pageParam, String baseInfoName) {
+    public void pageQuery(Page<YxBaseInfo> pageParam, String baseInfoName,Integer id) {
         QueryWrapper<YxBaseInfo> queryWrapper = new QueryWrapper<>();
         if(!StringUtils.isEmpty(baseInfoName)){
             queryWrapper.like("base_name",baseInfoName);
+        }
+        if(!StringUtils.isEmpty(id)){
+            queryWrapper.eq("id",id);
         }
         baseMapper.selectPage(pageParam,queryWrapper);
     }

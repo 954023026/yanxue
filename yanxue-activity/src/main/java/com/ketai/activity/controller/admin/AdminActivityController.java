@@ -143,5 +143,4 @@ public class AdminActivityController implements AdminActivityControllerApi {
         YxActivity yxActivity = activityService.activityInfo(id);
         return Result.ok().data(yxActivity);
     }
-
 }
