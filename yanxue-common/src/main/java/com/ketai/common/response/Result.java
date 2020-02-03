@@ -6,6 +6,7 @@ import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 import lombok.ToString;
+import net.bytebuddy.description.type.TypeDescription;
 
 @Data
 @ToString
@@ -24,6 +25,13 @@ public class Result<T> extends ResponseResult {
         r.setMessage(ResultCodeEnum.SUCCESS.getMessage());
         return r;
     }
+
+    public static Result ok(String str) {
+        Result r = new Result();
+        r.setMessage(str);
+        return r;
+    }
+
     public static Result ok(Object result) {
         Result r = new Result();
         r.setSuccess(ResultCodeEnum.SUCCESS.getSuccess());

@@ -23,4 +23,6 @@ public interface YxBaseSchoolService extends IService<YxBaseSchool> {
      * @return
      */
     List<YxBaseSchool> selByParentId(Long parentId);
+
+
 }

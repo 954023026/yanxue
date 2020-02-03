@@ -1,5 +1,6 @@
 package com.ketai.activity.service.impl;
 
+import com.baomidou.mybatisplus.core.conditions.Wrapper;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
@@ -13,6 +14,7 @@ import com.ketai.common.model.response.CommonCode;
 import com.ketai.common.query.YxActivityQuery;
 import com.ketai.model.domain.YxActivity;
 import com.ketai.model.domain.YxActivityRecord;
+import com.ketai.model.domain.YxBaseSchool;
 import com.ketai.model.domain.families.ext.ActivityCount;
 import com.ketai.model.domain.families.request.ActivityRequest;
 import com.ketai.model.domain.families.response.ActivityVo;
@@ -155,6 +157,35 @@ public class YxActivityServiceImpl extends ServiceImpl<YxActivityMapper, YxActiv
     }
 
     /**
+     * 根据研学活动id更改审批状态
+     * 局领导进行审批
+     * @param activityId
+     * @param reasonsNotPassed
+     * @param approverStatus
+     * @return
+     */
+    @Override
+    public int approval(Integer activityId, String reasonsNotPassed, Integer approverStatus) {
+        YxActivity yxActivity =new YxActivity();
+        yxActivity.setId(activityId);
+        if(approverStatus == 0){//拒绝
+            yxActivity.setAuditStatus(5);
+            yxActivity.setReasonsNotPassed(reasonsNotPassed);
+            return baseMapper.updateById(yxActivity);
+        }
+        yxActivity.setAuditStatus(6);//通过
+        yxActivity.setStatus(1);//有效
+        return baseMapper.updateById(yxActivity);
+    }
+
+    @Override
+    public List<YxActivity> selByStatus() {
+        QueryWrapper<YxActivity>  qq = new QueryWrapper<>();
+        qq.eq("audit_status",6).eq("status",1);
+        return baseMapper.selectList(qq);
+    }
+
+    /**
      * 分页查询研学信息,周
      * @param pageParam
      * @param activityRequest
@@ -216,7 +247,6 @@ public class YxActivityServiceImpl extends ServiceImpl<YxActivityMapper, YxActiv
             Integer day = Math.toIntExact((activityVo.getSerEndTime().getTime() - activityVo.getSerStartTime().getTime()) / (24 * 60 * 60 * 1000));
             activityVo.setDays(day);
         });
-
         return byPage;
     }
 

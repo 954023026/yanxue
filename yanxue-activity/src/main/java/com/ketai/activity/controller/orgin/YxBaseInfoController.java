@@ -22,7 +22,7 @@ public class YxBaseInfoController implements YxBaseInfoControllerApi {
     @Autowired
     private YxBaseInfoService yxBaseInfoService;
 
-    //根据基地名称分页查询
+    //根据基地名称分页查询，
     @PostMapping("/qryBaseInfoPage")
     @Override
     public Result PageQuery(String baseName,Integer id,
