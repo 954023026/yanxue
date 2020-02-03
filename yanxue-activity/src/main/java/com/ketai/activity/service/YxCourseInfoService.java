@@ -22,7 +22,7 @@ public interface YxCourseInfoService extends IService<YxCourseInfo> {
      * @param CourseInfoName
      * @auther 李
      */
-    void pageQuery(Page<YxCourseInfo> pageParam, String CourseInfoName);
+    void pageQuery(Page<YxCourseInfo> pageParam,Integer id, String CourseInfoName);
 
     /**
      * 新增研学课程信息
@@ -31,7 +31,7 @@ public interface YxCourseInfoService extends IService<YxCourseInfo> {
      * @auther 李
      */
     Result saveCourseInfo(YxCourseInfo yxCourseInfo);
-    
+
     /**
      * 根据id修改研学课程信息
      * @param yxCourseInfo

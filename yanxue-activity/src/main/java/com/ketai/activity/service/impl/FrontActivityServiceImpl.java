@@ -180,15 +180,15 @@ public class FrontActivityServiceImpl extends ServiceImpl<FrontActivityMapper, Y
     public Result selDataOverview(String year) {
         QueryWrapper<YxActivity> q1 = new QueryWrapper<>();
         //1. 待审核,对于觉领导来讲，条件 audit_status = 4
-        q1.eq("audit_status", 4).like("create_time", year);
+        q1.eq("audit_status",4).like("create_time",year);
         Integer toAuditNumber = baseMapper.selectCount(q1);
         //2.累计开展研学实践场次,条件 audit_status = 6
         QueryWrapper<YxActivity> q2 = new QueryWrapper<>();
         //从前端传来时不需要根据年份来查
-        if (!!StringUtils.isEmpty(year)) {
-            q1.eq("audit_status", 6);
+        if(!StringUtils.isEmpty(year)){
+            q1.eq("audit_status",6);
         }
-        q2.like("create_time", year);
+        q2.like("create_time",year);
         Integer practiceNumber = baseMapper.selectCount(q2);
         //3.累计开展研学学校,手写sql
         Integer schoolNumber = baseMapper.selCarryOutSchool(year);
@@ -203,17 +203,17 @@ public class FrontActivityServiceImpl extends ServiceImpl<FrontActivityMapper, Y
         ResultMap rm = new ResultMap();
 
         Map<String, Object> rr = new HashMap<>();
-        rr.put("allRecordNumber", 8);//首页展示风采条数
-        rr.put("allSchNumber", schoolNumber); //总的学下或按年份查询的学校数量
-        rr.put("allActNumber", practiceNumber); //累计开展研学实践场次
-        rr.put("allStuNumber", 0);   //TODO 总共学生认数
-        rr.put("allTchNumber", 0);    //TODO 总共老师认数
-        rr.put("allPeopleNumber", teaAndStuNumber);  //总人数
-        rr.put("allBaseNumber", 0); //TODO 认证基地数
-        rr.put("allUndertakeOrgNumber", 0);  //TODO 认证（承办机构）机构数
-        rr.put("authNumber", 0);     //尚不清楚
-        rr.put("audit2Number", 0);   //尚不清楚
-        rr.put("audit4Number", 0);   //尚不清楚
+        rr.put("allRecordNumber",8);//首页展示风采条数
+        rr.put("allSchNumber",schoolNumber); //总的学下或按年份查询的学校数量
+        rr.put("allActNumber",practiceNumber); //累计开展研学实践场次
+        rr.put("allStuNumber",0);   //TODO 总共学生认数
+        rr.put("allTchNumber",0);    //TODO 总共老师认数
+        rr.put("allPeopleNumber",teaAndStuNumber);  //总人数
+        rr.put("allBaseNumber",0); //TODO 认证基地数
+        rr.put("allUndertakeOrgNumber",0);  //TODO 认证（承办机构）机构数
+        rr.put("authNumber",0);     //尚不清楚
+        rr.put("audit2Number",0);   //尚不清楚
+        rr.put("audit4Number",0);   //尚不清楚
         rm.setData(rr);
         return Result.ok(rm);
     }

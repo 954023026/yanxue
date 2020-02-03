@@ -7,6 +7,7 @@ import com.ketai.model.domain.YxActivity;
 import com.ketai.model.domain.families.ext.ActivityCount;
 import com.ketai.model.domain.families.request.ActivityRequest;
 import com.ketai.model.domain.families.response.ActivityVo;
+import io.swagger.models.auth.In;
 
 import java.util.List;
 
@@ -54,4 +55,20 @@ public interface YxActivityService extends IService<YxActivity> {
      * @param id
      */
     void submitActivity(Integer id);
+
+    /**
+     * 根据研学活动id更改审批状态
+     * 局领导进行审批
+     * @param activityId
+     * @author  李
+     */
+    int approval(Integer activityId, String reasonsNotPassed, Integer approverStatus);
+
+    /**
+     *  查询 所有审核状态为已通过和有效的研学活动
+     *  进行归档操作
+     * @auther 李
+     * @return
+     */
+    List<YxActivity> selByStatus();
 }

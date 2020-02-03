@@ -16,10 +16,10 @@ import com.ketai.model.domain.YxBaseInfo;
 public interface YxBaseInfoService extends IService<YxBaseInfo> {
 
     /**
-     * 根据名称分页查询
+     * 根据名称或id分页查询
      * @auther 李
      */
-    void pageQuery(Page<YxBaseInfo> pageParam,String baseInfoName);
+    void pageQuery(Page<YxBaseInfo> pageParam,String baseInfoName,Integer id);
 
     /**
      * 新增基地信息

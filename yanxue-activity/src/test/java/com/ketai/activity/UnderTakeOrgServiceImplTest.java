@@ -1,10 +1,8 @@
 package com.ketai.activity;
 
-import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.ketai.activity.mapper.YxUndertakeOrgMapper;
-import com.ketai.activity.service.YxActivityService;
-import com.ketai.common.query.YxActivityQuery;
-import com.ketai.model.domain.YxActivity;
+import com.ketai.activity.service.impl.YxBaseOrganServiceImpl;
+import com.ketai.model.domain.YxBaseOrgan;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,6 +18,17 @@ public class UnderTakeOrgServiceImplTest {
 
     @Autowired
     private YxUndertakeOrgMapper undertakeOrgMapper;
+
+    @Autowired
+    private YxBaseOrganServiceImpl yxBaseOrganService;
+
+    //查询市区
+    @Test
+    public void testSelByParentCode() {
+        List<YxBaseOrgan> yxBaseOrgans = yxBaseOrganService.selByParentCode(100000000000L);
+        yxBaseOrgans.forEach(item ->
+                System.out.println("市区"+item+"\n"));
+    }
 
     @Test
     public void testGetAllYear(){
