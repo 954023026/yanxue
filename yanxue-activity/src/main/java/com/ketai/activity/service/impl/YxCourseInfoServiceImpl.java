@@ -9,8 +9,8 @@ import com.ketai.activity.service.YxCourseInfoService;
 import com.ketai.common.response.Result;
 import com.ketai.common.response.ResultListPage;
 import com.ketai.model.domain.YxCourseInfo;
-import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Service;
+import org.springframework.util.StringUtils;
 
 /**
  * <p>
@@ -30,10 +30,13 @@ public class YxCourseInfoServiceImpl extends ServiceImpl<YxCourseInfoMapper, YxC
      * @auther 李
      */
     @Override
-    public void pageQuery(Page<YxCourseInfo> pageParam, String CourseInfoName) {
+    public void pageQuery(Page<YxCourseInfo> pageParam,Integer id,String CourseInfoName) {
         QueryWrapper<YxCourseInfo> queryWrapper = new QueryWrapper<>();
         if(!StringUtils.isEmpty(CourseInfoName)){
             queryWrapper.like("course_name",CourseInfoName);
+        }
+        if(!StringUtils.isEmpty(id)){
+            queryWrapper.like("id",id);
         }
         baseMapper.selectPage(pageParam,queryWrapper);
     }

@@ -1,19 +1,9 @@
 package com.ketai.activity.controller.school;
 
 
-import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
-import com.ketai.activity.service.YxActivityService;
 import com.ketai.api.school.SchoolControllerApi;
-import com.ketai.common.query.YxActivityQuery;
-import com.ketai.common.response.Result;
-import com.ketai.common.response.ResultListPage;
-import com.ketai.model.domain.YxActivity;
-import io.swagger.annotations.ApiParam;
-import org.springframework.beans.BeanUtils;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
 
 /**
  * <p>

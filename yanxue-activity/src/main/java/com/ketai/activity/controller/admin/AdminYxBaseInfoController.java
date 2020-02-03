@@ -17,14 +17,14 @@ import java.util.UUID;
  * 研学基地
  */
 @RestController
-@RequestMapping("admin/base/")
+@RequestMapping("admin/base")
 public class AdminYxBaseInfoController implements AdminYxBaseInfoControllerApi {
 
     @Autowired
     private YxBaseInfoService yxBaseInfoService;
 
     /**
-     * 基地新增于修改接口，涉及到 地址三级联查，图片上传接口
+     * 基地新增和修改接口，涉及到 地址三级联查，图片上传接口
      * 根据是否有id来判断 新增或修改
      * @param yxBaseInfo
      * @return

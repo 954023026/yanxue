@@ -37,19 +37,19 @@ public class YxBaseOrgan implements Serializable {
     private String name;
 
     @ApiModelProperty(value = "教育局简称")
-    private String short_name;
+    private String shortName;
 
     @ApiModelProperty(value = "地区名称")
-    private String region_name;
+    private String regionName;
 
     @ApiModelProperty(value = "地区简称")
-    private String region_short_name;
+    private String regionShortName;
 
     @ApiModelProperty(value = "地区层级 2-省 4-市 6-区县")
-    private Integer region_level;
+    private Integer regionLevel;
 
     @ApiModelProperty(value = "上级编码")
-    private String parent_code;
+    private String parentCode;
 
     @ApiModelProperty(value = "上级id")
     private Integer parent_id;
@@ -58,10 +58,10 @@ public class YxBaseOrgan implements Serializable {
     private Integer status;
 
     @ApiModelProperty(value = "省级id")
-    private Integer level2_id;
+    private Integer level2Id;
 
     @ApiModelProperty(value = "市级id")
-    private Integer level4_id;
+    private Integer level4Id;
 
     @ApiModelProperty(value = "创建时间")
     private Date created_time;

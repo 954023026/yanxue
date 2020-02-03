@@ -2,11 +2,9 @@ package com.ketai.activity.controller.admin;
 
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.ketai.activity.service.YxActivityService;
-import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.ketai.common.query.YxActivityQuery;
 import com.ketai.common.response.ResultListPage;
 import com.ketai.model.domain.YxActivity;
-import com.ketai.common.response.ResultListPage;
 import com.ketai.model.domain.families.ext.ActivityCount;
 import com.ketai.api.admin.AdminActivityControllerApi;
 import com.ketai.common.response.Result;
@@ -15,8 +13,8 @@ import org.springframework.beans.BeanUtils;
 import com.ketai.model.domain.families.request.ActivityRequest;
 import com.ketai.model.domain.families.response.ActivityVo;
 import io.swagger.annotations.ApiOperation;
-import io.swagger.annotations.ApiParam;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -58,6 +56,10 @@ public class AdminActivityController implements AdminActivityControllerApi {
     @PostMapping("activityStatistics")
     @Override
     public Result activityStatistics(ActivityRequest activityRequest) {
+        if(StringUtils.isEmpty(activityRequest.getNowPage())){
+            activityRequest.setNowPage(0L);
+            activityRequest.setPageSize(5L);
+        }
         Page<ActivityVo> pageParam = new Page<>(activityRequest.getNowPage(), activityRequest.getPageSize());
         List<ActivityVo> activityVos = activityService.pageStatisticsQuery(pageParam, activityRequest);
         return Result.ok(new ResultListPage(activityVos, pageParam.getPages(), pageParam.getTotal(), activityRequest.getNowPage(), activityRequest.getPageSize()));
@@ -149,5 +151,7 @@ public class AdminActivityController implements AdminActivityControllerApi {
         YxActivity yxActivity = activityService.activityInfo(id);
         return Result.ok().data(yxActivity);
     }
+
+
 
 }

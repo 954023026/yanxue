@@ -36,6 +36,6 @@ public class AdminYxCourseInfoController implements AdminYxCourseInfoControllerA
             return courseInfoService.saveAndFulsh(yxCourseInfo);
         }
         yxCourseInfo.setId(UUID.randomUUID().hashCode());
-        return courseInfoService.saveAndFulsh(yxCourseInfo);
+        return courseInfoService.saveCourseInfo(yxCourseInfo);
     }
 }
