@@ -12,16 +12,12 @@ import org.springframework.web.bind.annotation.PathVariable;
 public interface FrontActivityControllerApi {
     @ApiOperation(value = "分页条件查询")
     public Result selectPage(
-        @ApiParam(name = "page", value = "当前页码", required = true)
-        @PathVariable Integer page,
-        @ApiParam(name = "limit", value = "每页记录数", required = true)
-        @PathVariable Integer limit,
         @ApiParam(name = "pcActivityQuery", value = "查询对象", required = false)
         PcActivityQuery pcActivityQuery
     );
 
     @ApiOperation(value = "根据id查询研学详情")
-    public ResultMap selectById(
+    public Result activityDetailsById(
             @ApiParam(name="id",value = "研学实践id",required = true)
             @PathVariable Integer id
     );

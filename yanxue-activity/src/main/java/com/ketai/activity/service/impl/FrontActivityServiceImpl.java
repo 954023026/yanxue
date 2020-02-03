@@ -9,6 +9,7 @@ import com.ketai.activity.service.FrontYxActivityRecordService;
 import com.ketai.activity.mapper.*;
 import com.ketai.activity.service.FrontActivityService;
 import com.ketai.activity.service.FrontYxActivityRecordService;
+import com.ketai.activity.service.YxActivityService;
 import com.ketai.activity.service.YxUndertakeOrgService;
 import com.ketai.common.constant.CommonAuditStatus;
 import com.ketai.activity.mapper.FrontActivityMapper;
@@ -19,7 +20,6 @@ import com.ketai.common.response.ResultMap;
 import com.ketai.model.domain.*;
 import com.ketai.common.query.pcQuery.PcActivityQuery;
 import com.ketai.model.domain.families.ext.ActivityCount;
-import com.netflix.discovery.converters.Auto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
@@ -52,86 +52,99 @@ public class FrontActivityServiceImpl extends ServiceImpl<FrontActivityMapper, Y
     @Autowired
     private YxBaseOrganMapper yxBaseOrganMapper;
 
+    //评分
     @Autowired
     private YxEvaluateInfoMapper yxEvaluateInfoMapper;
 
 
+    @Autowired
+    private YxActivityService activityService;
+
     //分页查询
     @Override
     public void pageQuery(Page<YxActivity> pageParam, PcActivityQuery pcActivityQuery) {
-        QueryWrapper<YxActivity> queryWrapper=new QueryWrapper<>();
-        if (pcActivityQuery==null){
-            baseMapper.selectPage(pageParam,queryWrapper);
+        QueryWrapper<YxActivity> queryWrapper = new QueryWrapper<>();
+        if (pcActivityQuery == null) {
+            baseMapper.selectPage(pageParam, queryWrapper);
             return;
         }
         Integer baseId = pcActivityQuery.getBaseId();   //研学基地id
         Integer organId = pcActivityQuery.getOrganId(); //区域id
         Integer organizationId = pcActivityQuery.getOrganizationId(); //承办机构id
-        String participationSchYear = pcActivityQuery.getParticipationSchYear();  //年级
+        //String participationSchYear = pcActivityQuery.getParticipationSchYear();  //年级
         String activityName = pcActivityQuery.getActivityName();    //模糊查询值
+        String searchTime = pcActivityQuery.getSearchTime();    //模糊查询值
+
         Integer studyStep = pcActivityQuery.getStudyStep(); //阶段筛选
 
-        if (StringUtils.isEmpty(baseId)){
-            queryWrapper.eq("base_id",baseId);
+        if (!StringUtils.isEmpty(baseId)) {
+            queryWrapper.eq("base_id", baseId);
         }
-        if (StringUtils.isEmpty(organId)){
-            queryWrapper.eq("organ_id",organId);
+        if (!StringUtils.isEmpty(organId)) {
+            queryWrapper.eq("organ_id", organId);
         }
-        if (StringUtils.isEmpty(organizationId)){
-            queryWrapper.eq("organization_id",organizationId);
+        if (!StringUtils.isEmpty(organizationId)) {
+            queryWrapper.eq("organization_id", organizationId);
         }
-        if (StringUtils.isEmpty(baseId)){
-            queryWrapper.eq("participation_sch_year",participationSchYear);
+//        if (!StringUtils.isEmpty(baseId)) {
+//            queryWrapper.eq("participation_sch_year", participationSchYear);
+//        }
+        if (!StringUtils.isEmpty(studyStep)) {
+            queryWrapper.eq("study_step", studyStep);
         }
-        if (StringUtils.isEmpty(studyStep)){
-            queryWrapper.eq("study_step",studyStep);
+        if (!StringUtils.isEmpty(activityName)) {
+            queryWrapper.like("activity_name", activityName);
         }
-        if (StringUtils.isEmpty(activityName)){
-            queryWrapper.like("activity_name",activityName);
+        if (!StringUtils.isEmpty(searchTime)) {
+            if (searchTime.length() == 6) {
+                String[] split = org.apache.commons.lang3.StringUtils.split(searchTime, "-");
+                searchTime = split[0] + "-0" + split[1];
+            }
+            queryWrapper.like("create_time", searchTime);
         }
-        baseMapper.selectPage(pageParam,queryWrapper);
+        baseMapper.selectPage(pageParam, queryWrapper);
     }
 
     //根据研学id查询
     @Override
-    public ResultMap getActivityDetailsByid(Integer id) {
+    public Map<String, Object> getActivityDetailsByid(Integer id) {
         //研学实践信息
-        QueryWrapper<YxActivity> queryWrapper=new QueryWrapper<>();
-        queryWrapper.eq("id",id);
+        QueryWrapper<YxActivity> queryWrapper = new QueryWrapper<>();
+        queryWrapper.eq("id", id);
         List<YxActivity> activityList = baseMapper.selectList(queryWrapper);
         //获取基地信息
-        QueryWrapper<YxBaseInfo> queryWrapper1=new QueryWrapper<>();
+        QueryWrapper<YxBaseInfo> queryWrapper1 = new QueryWrapper<>();
         List<YxBaseInfo> baseInfoList = yxBaseInfoMapper.selectList(queryWrapper1);
 
         //获取评分信息
-        QueryWrapper<YxEvaluateInfo> queryWrapper2=new QueryWrapper<>();
+        QueryWrapper<YxEvaluateInfo> queryWrapper2 = new QueryWrapper<>();
         List<YxEvaluateInfo> evaluateInfoList = yxEvaluateInfoMapper.selectList(queryWrapper2);
-
-        return ResultMap.ok().data("activityModel",activityList)
-                .data("baseInfoModelWithBLOBs",baseInfoList)
-                .data("evaluateInfoModel",evaluateInfoList);
+        Map<String, Object> map = new HashMap<>();
+        map.put("activityModel", activityList);
+        map.put("baseInfoModelWithBLOBs", baseInfoList);
+        map.put("evaluateInfoModel", evaluateInfoList);
+        return map;
 
     }
 
-
     //获取所有筛选项
     @Override
-    public Map<String,Object> getSelectItem() {
+    public Map<String, Object> getSelectItem() {
         //获取基地信息
-        QueryWrapper<YxBaseInfo> queryWrapper1=new QueryWrapper<>();
+        QueryWrapper<YxBaseInfo> queryWrapper1 = new QueryWrapper<>();
         List<YxBaseInfo> baseInfoList = yxBaseInfoMapper.selectList(queryWrapper1);
 
         //获取机构信息
-        QueryWrapper<YxUndertakeOrg> queryWrapper2=new QueryWrapper<>();
+        QueryWrapper<YxUndertakeOrg> queryWrapper2 = new QueryWrapper<>();
         List<YxUndertakeOrg> undertakeOrgList = yxUndertakeOrgMapper.selectList(queryWrapper2);
 
         //获取区（县）信息
-        QueryWrapper<YxBaseOrgan> queryWrapper3=new QueryWrapper<>();
+        QueryWrapper<YxBaseOrgan> queryWrapper3 = new QueryWrapper<>();
         List<YxBaseOrgan> baseOrganList = yxBaseOrganMapper.selectList(queryWrapper3);
-        Map<String,Object> map=new HashMap<>();
-        map.put("baseInfo",baseInfoList);
-        map.put("undertakeOrgModels",undertakeOrgList);
-        map.put("organs",baseOrganList);
+        Map<String, Object> map = new HashMap<>();
+        map.put("baseInfo", baseInfoList);
+        map.put("undertakeOrgModels", undertakeOrgList);
+        map.put("organs", baseOrganList);
         return map;
 
     }
@@ -140,12 +153,12 @@ public class FrontActivityServiceImpl extends ServiceImpl<FrontActivityMapper, Y
     //获取所有学年
     @Override
     public Result getAllSchYear() {
-        QueryWrapper<YxActivity> queryWrapper=new QueryWrapper<>();
+        QueryWrapper<YxActivity> queryWrapper = new QueryWrapper<>();
         List<YxActivity> activityList = baseMapper.selectList(queryWrapper);
-        int n=activityList.size();
-        String [] schYearArr=new String[n]; //学年数组
-        for (int i=0;i<activityList.size();i++){
-            schYearArr[i]=activityList.get(i).getSchyear();
+        int n = activityList.size();
+        String[] schYearArr = new String[n]; //学年数组
+        for (int i = 0; i < activityList.size(); i++) {
+            schYearArr[i] = activityList.get(i).getSchyear();
         }
         return Result.ok().data(schYearArr);
     }
@@ -153,19 +166,8 @@ public class FrontActivityServiceImpl extends ServiceImpl<FrontActivityMapper, Y
     //获取统计总数
     @Override
     public ActivityCount getActivityStatisticsCount(String schyear) {
-        ActivityCount activityCount=new ActivityCount();
-        QueryWrapper<YxActivity> queryWrapper=new QueryWrapper<>();
-        if (!StringUtils.isEmpty(schyear)){
-            queryWrapper.eq("schyear",schyear);
-        }
-        //查询累计开展研基地场次
-        activityCount.setAllBaseNumber(12);
-        //查询累计开展研机构践场次
-        activityCount.setAllUndertakeOrgNumber(12);
-        //查询累计开展研学实践场次
-        Integer actNumber = baseMapper.selectCount(queryWrapper.eq("audit_status", CommonAuditStatus.APPROVAL_PASSED_STATUS_6));
-        activityCount.setAllActNumber(actNumber);
-        return activityCount;
+        ActivityCount activityNum = activityService.findActivityNum(schyear);
+        return activityNum;
     }
 
 
@@ -178,15 +180,15 @@ public class FrontActivityServiceImpl extends ServiceImpl<FrontActivityMapper, Y
     public Result selDataOverview(String year) {
         QueryWrapper<YxActivity> q1 = new QueryWrapper<>();
         //1. 待审核,对于觉领导来讲，条件 audit_status = 4
-        q1.eq("audit_status",4).like("create_time",year);
+        q1.eq("audit_status", 4).like("create_time", year);
         Integer toAuditNumber = baseMapper.selectCount(q1);
         //2.累计开展研学实践场次,条件 audit_status = 6
         QueryWrapper<YxActivity> q2 = new QueryWrapper<>();
         //从前端传来时不需要根据年份来查
-        if(!StringUtils.isEmpty(year)){
-            q1.eq("audit_status",6);
+        if (!!StringUtils.isEmpty(year)) {
+            q1.eq("audit_status", 6);
         }
-        q2.like("create_time",year);
+        q2.like("create_time", year);
         Integer practiceNumber = baseMapper.selectCount(q2);
         //3.累计开展研学学校,手写sql
         Integer schoolNumber = baseMapper.selCarryOutSchool(year);
@@ -201,17 +203,17 @@ public class FrontActivityServiceImpl extends ServiceImpl<FrontActivityMapper, Y
         ResultMap rm = new ResultMap();
 
         Map<String, Object> rr = new HashMap<>();
-        rr.put("allRecordNumber",8);//首页展示风采条数
-        rr.put("allSchNumber",schoolNumber); //总的学下或按年份查询的学校数量
-        rr.put("allActNumber",practiceNumber); //累计开展研学实践场次
-        rr.put("allStuNumber",0);   //TODO 总共学生认数
-        rr.put("allTchNumber",0);    //TODO 总共老师认数
-        rr.put("allPeopleNumber",teaAndStuNumber);  //总人数
-        rr.put("allBaseNumber",0); //TODO 认证基地数
-        rr.put("allUndertakeOrgNumber",0);  //TODO 认证（承办机构）机构数
-        rr.put("authNumber",0);     //尚不清楚
-        rr.put("audit2Number",0);   //尚不清楚
-        rr.put("audit4Number",0);   //尚不清楚
+        rr.put("allRecordNumber", 8);//首页展示风采条数
+        rr.put("allSchNumber", schoolNumber); //总的学下或按年份查询的学校数量
+        rr.put("allActNumber", practiceNumber); //累计开展研学实践场次
+        rr.put("allStuNumber", 0);   //TODO 总共学生认数
+        rr.put("allTchNumber", 0);    //TODO 总共老师认数
+        rr.put("allPeopleNumber", teaAndStuNumber);  //总人数
+        rr.put("allBaseNumber", 0); //TODO 认证基地数
+        rr.put("allUndertakeOrgNumber", 0);  //TODO 认证（承办机构）机构数
+        rr.put("authNumber", 0);     //尚不清楚
+        rr.put("audit2Number", 0);   //尚不清楚
+        rr.put("audit4Number", 0);   //尚不清楚
         rm.setData(rr);
         return Result.ok(rm);
     }

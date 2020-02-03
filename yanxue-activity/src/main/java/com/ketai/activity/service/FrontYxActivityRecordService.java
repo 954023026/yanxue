@@ -1,6 +1,8 @@
 package com.ketai.activity.service;
 
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.ketai.common.query.pcQuery.PcActivityRecordQuery;
 import com.ketai.model.domain.YxActivityRecord;
 
 /**
@@ -14,4 +16,11 @@ import com.ketai.model.domain.YxActivityRecord;
 public interface FrontYxActivityRecordService extends IService<YxActivityRecord> {
 
     int selRecordNumber(String year);
+
+    /**
+     * 条件、分页查询
+     * @param pcActivityRecordQuery 查询条件对象
+     * @auther 黄松
+     */
+    void pageQuery(Page<YxActivityRecord> pageParam, PcActivityRecordQuery pcActivityRecordQuery);
 }

@@ -12,10 +12,7 @@ import com.ketai.model.domain.YxActivity;
 import com.ketai.common.query.pcQuery.PcActivityQuery;
 import com.ketai.model.domain.families.ext.ActivityCount;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Map;
 
@@ -25,19 +22,14 @@ public class FrontActivityController implements FrontActivityControllerApi {
     @Autowired
     private FrontActivityService frontActivityService;
 
-    @PostMapping("selectPage/{page}/{limit}")
-    @Override
-    public Result selectPage(
-            @PathVariable Integer page,
-            @PathVariable Integer limit,
-            PcActivityQuery pcActivityQuery) {
-        if (page <= 0 || limit <= 0) {
+    @PostMapping("selectPage")
+    public Result selectPage(PcActivityQuery pcActivityQuery) {
+        if (pcActivityQuery.getNowPage()<=0||pcActivityQuery.getPageSize()<=0){
             //21003 参数错误
             throw new KetaiException(ResultCodeEnum.PARAM_ERROR);
         }
-
-        Page<YxActivity> pageParam = new Page<>(page, limit);
-        frontActivityService.pageQuery(pageParam, pcActivityQuery);
+        Page<YxActivity> pageParam=new Page<>(pcActivityQuery.getNowPage(),pcActivityQuery.getPageSize());
+        frontActivityService.pageQuery(pageParam,pcActivityQuery);
         System.out.println(pageParam.getTotal());
         return Result.ok(
                 new ResultListPage(
@@ -46,8 +38,9 @@ public class FrontActivityController implements FrontActivityControllerApi {
     }
     @PostMapping("activityDetails")
     @Override
-    public ResultMap selectById(Integer id) {
-        return frontActivityService.getActivityDetailsByid(id);
+    public Result activityDetailsById(Integer id) {
+        Map<String, Object> result = frontActivityService.getActivityDetailsByid(id);
+        return Result.ok(result);
     }
 
     @PostMapping("getSelectItem")
@@ -58,12 +51,14 @@ public class FrontActivityController implements FrontActivityControllerApi {
 
     }
 
+    //活动学年
     @PostMapping("getAllSchYear")
     @Override
     public Result getAllSchYear() {
         return frontActivityService.getAllSchYear();
     }
 
+    //获取统计总数
     @PostMapping("getActivityStatisticsCount")
     @Override
     public Result getActivityStatisticsCount(String schyear) {

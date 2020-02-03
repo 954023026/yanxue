@@ -37,7 +37,7 @@ public class YxBaseOrgan implements Serializable {
     private String name;
 
     @ApiModelProperty(value = "教育局简称")
-    private String short_name;
+    private String shortName;
 
     @ApiModelProperty(value = "地区名称")
     private String region_name;

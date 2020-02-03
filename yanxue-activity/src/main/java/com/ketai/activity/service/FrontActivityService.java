@@ -31,7 +31,7 @@ public interface FrontActivityService extends IService<YxActivity> {
      * @param id
      * @auther 黄松
      */
-    ResultMap getActivityDetailsByid(Integer id);
+    Map<String, Object> getActivityDetailsByid(Integer id);
 
     /**
      * 查询数据总览
