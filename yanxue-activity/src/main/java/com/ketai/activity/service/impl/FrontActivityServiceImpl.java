@@ -19,7 +19,6 @@ import com.ketai.common.response.ResultMap;
 import com.ketai.model.domain.*;
 import com.ketai.common.query.pcQuery.PcActivityQuery;
 import com.ketai.model.domain.families.ext.ActivityCount;
-import com.netflix.discovery.converters.Auto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;

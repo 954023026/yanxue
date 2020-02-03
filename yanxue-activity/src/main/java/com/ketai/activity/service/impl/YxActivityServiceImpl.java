@@ -170,9 +170,9 @@ public class YxActivityServiceImpl extends ServiceImpl<YxActivityMapper, YxActiv
         String schName = activityRequest.getSchName();
 
         //开始时间
-        String serStartTime = activityRequest.getSerStartTime();
+        String serStartTime = activityRequest.getStartTime();
         //结束
-        String serEndTime = activityRequest.getSerEndTime();
+        String serEndTime = activityRequest.getEndTime();
         //区县名称
         String organName = activityRequest.getOrganName();
         //类型为已通过
