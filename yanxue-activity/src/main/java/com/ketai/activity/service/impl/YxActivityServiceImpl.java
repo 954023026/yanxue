@@ -186,7 +186,8 @@ public class YxActivityServiceImpl extends ServiceImpl<YxActivityMapper, YxActiv
     }
 
     /**
-     * 分页查询研学信息,周
+     * 分页查询研学信息
+     * @auther 周 , 李
      * @param pageParam
      * @param activityRequest
      * @return
@@ -194,25 +195,30 @@ public class YxActivityServiceImpl extends ServiceImpl<YxActivityMapper, YxActiv
     @Override
     public List<ActivityVo> pageStatisticsQuery(Page<ActivityVo> pageParam, ActivityRequest activityRequest) {
         QueryWrapper<YxActivity> queryWrapper = new QueryWrapper<>();
-        //queryWrapper.orderByDesc("create_time");
         //学习阶段
-        Integer state = activityRequest.getState();
+        Integer state = activityRequest.getStudyStep();
         //学校名称
         String schName = activityRequest.getSchName();
-
+        //基地名称
+        String baseName = activityRequest.getBaseName();
         //开始时间
         String serStartTime = activityRequest.getSerStartTime();
         //结束
         String serEndTime = activityRequest.getSerEndTime();
         //区县名称
         String organName = activityRequest.getOrganName();
-        //类型为已通过
-        //queryWrapper.eq("audit_status", 6);
+        //研学状态1
+        Integer auditStatus1 = activityRequest.getAuditStatus();
+        //研学状态2
+        Integer auditStatus2 = activityRequest.getAuditName();
+
+
         if (!StringUtils.isEmpty(state)) {
             queryWrapper.eq("study_step", state);
         }
         if (!StringUtils.isEmpty(schName)) {
-            queryWrapper.like("sch_name", schName);
+            //研学主题/申报单位/研学负责人查询
+            queryWrapper.like("sch_name", schName).or().like("activity_name",schName).or().like("principal_name",schName);
         }
         if (!StringUtils.isEmpty(serStartTime)) {
             queryWrapper.gt("sign_start_time", serStartTime);
@@ -223,6 +229,18 @@ public class YxActivityServiceImpl extends ServiceImpl<YxActivityMapper, YxActiv
         if (!StringUtils.isEmpty(organName)) {
             queryWrapper.eq("organ_name", organName);
         }
+        if(!StringUtils.isEmpty(baseName)){
+            queryWrapper.like("base_name",baseName);
+        }
+        if(!StringUtils.isEmpty(auditStatus1)){
+            queryWrapper.eq("audit_status",auditStatus1);
+        }
+        if(!StringUtils.isEmpty(auditStatus2)){
+            queryWrapper.eq("audit_status",auditStatus2);
+        }
+        //活动结束时、开始时间
+        queryWrapper.ge(!StringUtils.isEmpty(activityRequest.getSerStartTime()),"ser_start_time",activityRequest.getSerStartTime()).le(!StringUtils.isEmpty(activityRequest.getSerEndTime()),"ser_end_time",activityRequest.getSerEndTime());
+
         List<ActivityVo> byPage = activityMapper.findByPage(pageParam, queryWrapper);
         //todo 抛出指定异常
         if (byPage == null){

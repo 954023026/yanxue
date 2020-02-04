@@ -26,7 +26,7 @@ public class YxBaseInfoController implements YxBaseInfoControllerApi {
     @PostMapping("/qryBaseInfoPage")
     @Override
     public Result PageQuery(String baseName,Integer id,
-                            @RequestParam(defaultValue = "5") Integer pageSize,
+                            @RequestParam(defaultValue = "10") Integer pageSize,
                             @RequestParam(defaultValue = "0") Integer nowPage) {
         Page<YxBaseInfo> pageParam = new Page<>(nowPage, pageSize);
         yxBaseInfoService.pageQuery(pageParam,baseName,id);

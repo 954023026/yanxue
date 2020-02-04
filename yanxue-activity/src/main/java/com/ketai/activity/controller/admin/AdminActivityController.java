@@ -43,6 +43,7 @@ public class AdminActivityController implements AdminActivityControllerApi {
 
     /**
      * 分页查询研学信息
+     *
      * @param activityRequest
      * @return
      * @author  周
