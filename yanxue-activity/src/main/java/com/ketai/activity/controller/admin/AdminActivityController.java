@@ -32,6 +32,12 @@ public class AdminActivityController implements AdminActivityControllerApi {
     @Autowired
     private YxActivityService activityService;
 
+    /**
+     * 根据学年统计数量
+     * @param schyear
+     * @return
+     * @author 周
+     */
     @PostMapping("getActivityStatisticsCount")
     @Override
     public Result getActivityStatisticsCount(

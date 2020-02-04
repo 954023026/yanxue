@@ -9,4 +9,20 @@
         <where>${ew.sqlSegment}</where>
         GROUP BY e.base_id
     </select>
+
+    <select id="qryEvaluateInfoPage" resultType="com.ketai.model.domain.families.response.EvaluateInfoVo">
+        SELECT
+            e.*,
+            a.activity_name,
+            b.base_name
+        FROM
+          yx_evaluate_info e
+        LEFT JOIN yx_base_info b ON e.base_id = b.id
+        LEFT JOIN yx_activity a ON a.id = e.activity_id
+        <where>${ew.sqlSegment}</where>
+    </select>
+
+    <select id="selectBaseEvaluateGroupCnt" resultType="com.ketai.model.domain.families.response.EvaluateInfoNumVo">
+        SELECT FLOOR(score) score,COUNT(score) as scores FROM yx_evaluate_info GROUP BY FLOOR(score)
+    </select>
 </mapper>
