@@ -195,6 +195,8 @@ public class YxActivityServiceImpl extends ServiceImpl<YxActivityMapper, YxActiv
     @Override
     public List<ActivityVo> pageStatisticsQuery(Page<ActivityVo> pageParam, ActivityRequest activityRequest) {
         QueryWrapper<YxActivity> queryWrapper = new QueryWrapper<>();
+        //基地id
+        Integer id = activityRequest.getId();
         //学习阶段
         Integer state = activityRequest.getStudyStep();
         //学校名称
@@ -212,7 +214,10 @@ public class YxActivityServiceImpl extends ServiceImpl<YxActivityMapper, YxActiv
         //研学状态2
         Integer auditStatus2 = activityRequest.getAuditName();
 
-
+        if (!StringUtils.isEmpty(id)) {
+            String activityName = baseMapper.selectById(id).getActivityName();
+            queryWrapper.eq("activity_name", activityName);
+        }
         if (!StringUtils.isEmpty(state)) {
             queryWrapper.eq("study_step", state);
         }
@@ -227,7 +232,7 @@ public class YxActivityServiceImpl extends ServiceImpl<YxActivityMapper, YxActiv
             queryWrapper.lt("sign_start_time", serEndTime);
         }
         if (!StringUtils.isEmpty(organName)) {
-            queryWrapper.eq("organ_name", organName);
+            queryWrapper.like("organ_name", organName);
         }
         if(!StringUtils.isEmpty(baseName)){
             queryWrapper.like("base_name",baseName);
@@ -255,7 +260,7 @@ public class YxActivityServiceImpl extends ServiceImpl<YxActivityMapper, YxActiv
             activityVo.setRealityTchNumber(activityVo.getLedTeacherNumber() + activityVo.getTeamTeacherNumber());
             //学生人数
             activityVo.setRealityStuNumber(activityVo.getStudentNumber());
-            String[] auditNames = {"未提交", "待学生科审批", "学生科审核拒绝", "待局领导审批", "局领导审核拒绝", "审批已通过", "已归档", "已结束"};
+            String[] auditNames = {"未提交", "待学生科审批", "学生科审核拒绝", "待局领导审批", "局领导审核拒绝", "审批已通过", "已归档", "已结束","已归档和已结束"};
             //获取状态id
             Integer auditStatus = activityVo.getAuditStatus();
             String auditName = auditNames[auditStatus - 1];

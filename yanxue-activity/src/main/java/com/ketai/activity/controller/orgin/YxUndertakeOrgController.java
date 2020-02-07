@@ -34,11 +34,11 @@ public class YxUndertakeOrgController implements YxUndertakeOrgApi {
      */
     @PostMapping("qryUndertakeOrgInfoPage")
     @Override
-    public Result PageQuery(String baseName,Integer id,
+    public Result PageQuery(String orgname,Integer id,
                             @RequestParam(defaultValue = "5") Integer pageSize,
                             @RequestParam(defaultValue = "0") Integer nowPage) {
         Page<YxUndertakeOrg> pageParam = new Page<>(nowPage, pageSize);
-        yxUndertakeOrgService.pageQuery(pageParam,id,baseName);
+        yxUndertakeOrgService.pageQuery(pageParam,id,orgname);
         List<YxUndertakeOrg> records = pageParam.getRecords();
         if(!StringUtils.isEmpty(id)){
             return Result.ok(records.get(0));

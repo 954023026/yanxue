@@ -2,11 +2,15 @@ package com.ketai.model.domain.families.request;
 
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
+import jdk.nashorn.internal.ir.IdentNode;
 import lombok.Data;
 
 @ApiModel(value = "ActivityRequest查询对象",description = "研学活动查询对象封装")
 @Data
 public class ActivityRequest {
+
+    @ApiModelProperty(value = "基地id")
+    private Integer id;
 
     @ApiModelProperty(value = "基地名称")
     private String baseName;

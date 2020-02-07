@@ -33,6 +33,7 @@ public class Archiving extends ServiceImpl<YxActivityMapper, YxActivity> {
         for(YxActivity yxActivity : yxActivities){
             Integer day = Math.toIntExact((date.getTime() - yxActivity.getSerStartTime().getTime()) / (24 * 60 * 60 * 1000));
             if(day>0||day==0){//活动已结束
+                yxActivity.setAuditStatus(9);
                 yxActivity.setStatus(0);    //活动无效
                 baseMapper.updateById(yxActivity);
             }
