@@ -133,11 +133,14 @@ public class FrontActivityServiceImpl extends ServiceImpl<FrontActivityMapper, Y
     //获取所有学年
     @Override
     public Result getAllSchYear() {
+
         QueryWrapper<YxActivity> queryWrapper=new QueryWrapper<>();
+        //queryWrapper.select("distinct schyear");//去重
         List<YxActivity> activityList = baseMapper.selectList(queryWrapper);
         int n=activityList.size();
         String [] schYearArr=new String[n]; //学年数组
         for (int i=0;i<activityList.size();i++){
+
             schYearArr[i]=activityList.get(i).getSchyear();
         }
         return Result.ok().data(schYearArr);
