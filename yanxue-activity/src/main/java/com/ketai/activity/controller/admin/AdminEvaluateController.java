@@ -3,8 +3,11 @@ package com.ketai.activity.controller.admin;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.ketai.activity.service.YxEvaluateInfoService;
 import com.ketai.api.admin.AdminEvaluateControllerApi;
+import com.ketai.common.constants.ResultCodeEnum;
+import com.ketai.common.exception.ExceptionThrowOut;
 import com.ketai.common.response.Result;
 import com.ketai.common.response.ResultListPage;
+import com.ketai.model.domain.YxEvaluateInfo;
 import com.ketai.model.domain.families.request.EvaluateRequest;
 import com.ketai.model.domain.families.response.ActivityVo;
 import com.ketai.model.domain.families.response.EvaluateInfoVo;
@@ -68,4 +71,18 @@ public class AdminEvaluateController implements AdminEvaluateControllerApi {
         return Result.ok(new ResultListPage(evaluateInfoService.qryEvaluateInfoPage(pageParam, evaluateRequest),
                 pageParam.getPages(), pageParam.getTotal(), evaluateRequest.getNowPage(), evaluateRequest.getPageSize()));
     }
+
+    /**
+     * 显示/隐藏研学评分
+     * @param evaluateRequest
+     * @return
+     * @author 周
+     */
+    @PostMapping("changeEvaluateState")
+    @Override
+    public Result changeEvaluateState(EvaluateRequest evaluateRequest) {
+        evaluateInfoService.changeEvaluateState(evaluateRequest);
+        return Result.ok().success(true);
+    }
+
 }

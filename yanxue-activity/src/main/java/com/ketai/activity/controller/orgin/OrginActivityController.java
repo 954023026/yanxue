@@ -9,12 +9,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 
-@RestController
-@RequestMapping("/pc/activity/")
+//@RestController
+//@RequestMapping("/pc/activity/")
 public class OrginActivityController {
 
-    @Autowired
-    private YxBaseSchoolServiceImpl yxBaseSchoolService;
+//    @Autowired
+//    private YxBaseSchoolServiceImpl yxBaseSchoolService;
     /**
      * /admin/activity/activityStatistics
      * 周贤彪已完成

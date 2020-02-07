@@ -25,4 +25,7 @@ public interface AdminEvaluateControllerApi {
 
     @ApiOperation(value = "分页查询研学评分")
     Result qryEvaluateInfoPage(@ApiParam(name = "activityRequest", value = "查询对象",required = true) EvaluateRequest evaluateRequest);
+
+    @ApiOperation(value = "隐藏显示评论信息")
+    Result changeEvaluateState(  @ApiParam(name = "activityRequest", value = "隐藏显示评论接收类",required = true) EvaluateRequest evaluateRequest);
 }

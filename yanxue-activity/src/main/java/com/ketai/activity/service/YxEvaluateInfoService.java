@@ -26,4 +26,6 @@ public interface YxEvaluateInfoService extends IService<YxEvaluateInfo> {
     List<EvaluateInfoVo> qryEvaluateInfoPage(Page<ActivityVo> pageParam, EvaluateRequest evaluateRequest);
 
     Map<String,Integer> queryBaseEvaluateGroupCnt();
+
+    void changeEvaluateState(EvaluateRequest evaluateRequest);
 }
