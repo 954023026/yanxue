@@ -22,7 +22,7 @@ public enum ResultCodeEnum implements ResultCode {
     FETCH_PLAYAUTH_ERROR(false, 21014, "获取凭证错误"),
     URL_ENCODE_ERROR(false, 21015, "URL编码错误"),
     FETCH_ACCESSTOKEN_FAILD(false, 21016, "获取访问令牌失败"),
-    FETCH_USERINFO_ERROR(false, 21017, "用户错误"),
+    FETCH_USERINFO_ERROR(false, 21017, "用户账号或密码错误"),
     ILLEGAL_CALLBACK_REQUEST_ERROR(false, 21018, "非法回调请求错误")
 
 

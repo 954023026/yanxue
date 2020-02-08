@@ -15,4 +15,9 @@ public class EvaluateRequest extends RequestData {
     @ApiModelProperty(value = "星级")
     private Long qryScore;
 
+    @ApiModelProperty(value = "id")
+    private Integer id;
+
+    @ApiModelProperty(value = "隐藏0/显示1")
+    private String display;
 }

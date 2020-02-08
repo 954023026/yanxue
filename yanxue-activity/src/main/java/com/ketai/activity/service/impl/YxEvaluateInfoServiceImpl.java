@@ -5,6 +5,7 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.ketai.activity.mapper.YxEvaluateInfoMapper;
 import com.ketai.activity.service.YxEvaluateInfoService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.ketai.common.constants.ResultCodeEnum;
 import com.ketai.common.exception.ExceptionThrowOut;
 import com.ketai.common.model.response.CommonCode;
 import com.ketai.model.domain.YxActivity;
@@ -38,8 +39,8 @@ public class YxEvaluateInfoServiceImpl extends ServiceImpl<YxEvaluateInfoMapper,
     /**
      * @描述 分页查询研学评价
      * @返回值
-     * @创建人  愿你活的通透拎得清轻重辩得明是非
-     * @创建时间  2020/1/10 11:44
+     * @创建人 愿你活的通透拎得清轻重辩得明是非
+     * @创建时间 2020/1/10 11:44
      */
     @Override
     public List<EvaluateInfoVo> qryBaseEvaluatePage(Page<ActivityVo> pageParam, EvaluateRequest evaluateRequest) {
@@ -53,7 +54,7 @@ public class YxEvaluateInfoServiceImpl extends ServiceImpl<YxEvaluateInfoMapper,
         }
         List<EvaluateInfoVo> evaluateInfoVoList = evaluateInfoMapper.findEvaluatePage(pageParam, queryWrapper);
         //todo 抛出指定异常
-        if (evaluateInfoVoList == null){
+        if (evaluateInfoVoList == null) {
             ExceptionThrowOut.cast(CommonCode.SERVER_ERROR);
             return null;
         }
@@ -74,8 +75,8 @@ public class YxEvaluateInfoServiceImpl extends ServiceImpl<YxEvaluateInfoMapper,
         if (StringUtils.isNotBlank(baseName)) {
             queryWrapper.like("b.base_name", baseName);
         }
-        if (!org.springframework.util.StringUtils.isEmpty(qryScore)){
-            queryWrapper.eq("FLOOR(score)",qryScore);
+        if (!org.springframework.util.StringUtils.isEmpty(qryScore)) {
+            queryWrapper.eq("FLOOR(score)", qryScore);
         }
         if (StringUtils.isNotBlank(serStartTime)) {
             queryWrapper.gt("e.create_time", serStartTime);
@@ -85,7 +86,7 @@ public class YxEvaluateInfoServiceImpl extends ServiceImpl<YxEvaluateInfoMapper,
         }
         List<EvaluateInfoVo> evaluateInfoVoList = evaluateInfoMapper.qryEvaluateInfoPage(pageParam, queryWrapper);
         //todo 抛出指定异常
-        if (evaluateInfoVoList == null){
+        if (evaluateInfoVoList == null) {
             ExceptionThrowOut.cast(CommonCode.SERVER_ERROR);
             return null;
         }
@@ -94,28 +95,45 @@ public class YxEvaluateInfoServiceImpl extends ServiceImpl<YxEvaluateInfoMapper,
 
     @Override
     public Map<String, Integer> queryBaseEvaluateGroupCnt() {
-        List<EvaluateInfoNumVo> evaluateInfoVoList=evaluateInfoMapper.selectBaseEvaluateGroupCnt();
-        Map<String,Integer> map=new HashMap<>();
-        map.put("score0",0);
-        map.put("score1",0);
-        map.put("score2",0);
-        map.put("score3",0);
-        map.put("score4",0);
-        map.put("score5",0);
-        String[]scoreCounts={"score0","score1","score2","score3","score4","score5"};
+        List<EvaluateInfoNumVo> evaluateInfoVoList = evaluateInfoMapper.selectBaseEvaluateGroupCnt();
+        Map<String, Integer> map = new HashMap<>();
+        map.put("score0", 0);
+        map.put("score1", 0);
+        map.put("score2", 0);
+        map.put("score3", 0);
+        map.put("score4", 0);
+        map.put("score5", 0);
+        String[] scoreCounts = {"score0", "score1", "score2", "score3", "score4", "score5"};
         //todo 抛出指定异常
-        if (evaluateInfoVoList == null){
+        if (evaluateInfoVoList == null) {
             ExceptionThrowOut.cast(CommonCode.SERVER_ERROR);
             return null;
         }
 
-        evaluateInfoVoList.forEach(evaluate ->{
+        evaluateInfoVoList.forEach(evaluate -> {
             Integer score = evaluate.getScore();
-            String scoreName=scoreCounts[score];
-            map.put(scoreName,evaluate.getScores());
+            String scoreName = scoreCounts[score];
+            map.put(scoreName, evaluate.getScores());
         });
         return map;
     }
 
+    /**
+     * @描述  显示或隐藏该条评论
+     * @返回值  无
+     * @创建人  愿你活的通透拎得清轻重辩得明是非
+     * @创建时间  2020/2/3 18:41
+     */
+    @Override
+    public void changeEvaluateState(EvaluateRequest evaluateRequest) {
+        if (evaluateRequest.getId() <= 0 || evaluateRequest.getId() == null || evaluateRequest.getDisplay() == null) {
+            ExceptionThrowOut.cast(ResultCodeEnum.PARAM_ERROR);
+        }
+        YxEvaluateInfo evaluateInfo = new YxEvaluateInfo();
+        evaluateInfo.setId(evaluateRequest.getId());
+        evaluateInfo.setDisplay(evaluateRequest.getDisplay());
+        evaluateInfoMapper.updateById(evaluateInfo);
+
+    }
 
 }
