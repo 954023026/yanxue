@@ -51,7 +51,7 @@ public class ActivityVo implements Serializable {
 
     @ApiModelProperty(value = "创建时间",example = "2019-01-01 8:00:00")
     @TableField(fill = FieldFill.INSERT)
-    private Date createTime;
+    private String createTime;
 
     @ApiModelProperty(value = "创建人id")
     private Integer creator;
@@ -115,19 +115,19 @@ public class ActivityVo implements Serializable {
 
     @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     @ApiModelProperty(value = "活动结束时间")
-    private Date serEndTime;
+    private String serEndTime;
 
     @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     @ApiModelProperty(value = "活动开始时间")
-    private Date serStartTime;
+    private String serStartTime;
 
     @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     @ApiModelProperty(value = "报名结束时间")
-    private Date signEndTime;
+    private String signEndTime;
 
     @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     @ApiModelProperty(value = "报名开始时间")
-    private Date signStartTime;
+    private String signStartTime;
 
     @ApiModelProperty(value = "状态 0无效 1有效")
     private Integer status;

@@ -5,8 +5,6 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
-import java.util.List;
-
 /**
  * 描述:
  *      返回结果并携带分页信息
@@ -17,9 +15,6 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 public class ResultListPage<T> implements Serializable {
-
-
-
     /**
      * 后台研学基地、研学课程、研学承办机构新增时需要名为 model 的返回值
      */
@@ -40,5 +35,4 @@ public class ResultListPage<T> implements Serializable {
     private long allCount;
     private long nowPage;
     private long pageSize;
-
 }

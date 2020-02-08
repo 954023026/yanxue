@@ -62,7 +62,7 @@ public class YxBaseInfo implements Serializable {
     private String coverPhotoUrl;
 
     @ApiModelProperty(value = "创建时间")
-    private Date createTime;
+    private String createTime;
 
     @ApiModelProperty(value = "创建人user_id")
     private Integer creator;

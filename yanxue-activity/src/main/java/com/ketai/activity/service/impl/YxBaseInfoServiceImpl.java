@@ -2,6 +2,7 @@ package com.ketai.activity.service.impl;
 
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.ketai.activity.mapper.YxBaseInfoMapper;
@@ -24,7 +25,7 @@ import org.springframework.util.StringUtils;
 public class YxBaseInfoServiceImpl extends ServiceImpl<YxBaseInfoMapper, YxBaseInfo> implements YxBaseInfoService {
 
     /**
-     * 研学基地分页调价查询
+     * 研学基地分页条价查询
      * @param pageParam
      * @param baseInfoName
      */
@@ -37,7 +38,7 @@ public class YxBaseInfoServiceImpl extends ServiceImpl<YxBaseInfoMapper, YxBaseI
         if(!StringUtils.isEmpty(id)){
             queryWrapper.eq("id",id);
         }
-        baseMapper.selectPage(pageParam,queryWrapper);
+        baseMapper.selectPage(pageParam, queryWrapper);
     }
 
     /**

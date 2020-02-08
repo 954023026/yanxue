@@ -15,6 +15,7 @@ import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.StringUtils;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.ServletException;
@@ -25,13 +26,13 @@ import java.util.Map;
 
 @Api(tags = "系统用户管理")
 @RestController
-@RequestMapping("/safe/passport")
+@RequestMapping("/safe/passport/")
 public class AdministratorController {
 
     @Autowired
     private AdministratorService administratorService;
 
-    @PostMapping("dologin")
+    @PostMapping(value = "dologin",consumes = "application/json")
     @ApiOperation(value = "用户登录")
     public Result login(@ApiParam(name = "Administrator", value = "管理员用户对象", required = true) @RequestBody Administrator administrator) {
         String accountName = administrator.getAccountName();
@@ -67,7 +68,7 @@ public class AdministratorController {
     @ApiOperation(value = "用户登出")
     public Result logout(HttpServletRequest request) {
         //请求头中获取token
-        String authHeader = request.getHeader("ping");
+        String authHeader = request.getHeader("pin");
         if (authHeader == null) {
             ExceptionThrowOut.cast(ResultCodeEnum.USERUNLOGIN_ERROR);
         }

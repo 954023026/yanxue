@@ -23,7 +23,10 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.StringUtils;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -252,6 +255,16 @@ public class YxActivityServiceImpl extends ServiceImpl<YxActivityMapper, YxActiv
             ExceptionThrowOut.cast(CommonCode.SERVER_ERROR);
         }
         byPage.forEach(activityVo -> {
+            //
+            activityVo.setSerStartTime(activityVo.getSerStartTime().toString().substring(0,10));
+            //
+            activityVo.setSerEndTime(activityVo.getSerEndTime().toString().substring(0,10));
+            //报名开始时间
+            activityVo.setSignStartTime(activityVo.getSignStartTime().substring(0,10));
+            //报名结束时间
+            activityVo.setSignEndTime(activityVo.getSignEndTime().substring(1,10));
+            //申报时间
+            activityVo.setCreateTime(activityVo.getCreateTime().substring(0,10));
             //带队老师人数
             activityVo.setRealityLedTchNumber(activityVo.getLedTeacherNumber());
             //随队老师人数
@@ -267,7 +280,16 @@ public class YxActivityServiceImpl extends ServiceImpl<YxActivityMapper, YxActiv
             //状态
             activityVo.setAuditName(auditName);
             //时间加减，获取天数
-            Integer day = Math.toIntExact((activityVo.getSerEndTime().getTime() - activityVo.getSerStartTime().getTime()) / (24 * 60 * 60 * 1000));
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+            Date str = null;
+            Date end = null;
+            try {
+                 end = sdf.parse(activityVo.getSerEndTime());
+                 str = sdf.parse(activityVo.getSerStartTime());
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+            Integer day = Math.toIntExact((end.getTime() - str.getTime()) / (24 * 60 * 60 * 1000));
             activityVo.setDays(day);
         });
         return byPage;

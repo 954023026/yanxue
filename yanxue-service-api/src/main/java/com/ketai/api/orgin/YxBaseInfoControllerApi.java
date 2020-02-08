@@ -5,6 +5,8 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 
+import java.text.ParseException;
+
 @Api(value = "基地", description = "基地信息管理")
 public interface YxBaseInfoControllerApi {
 
@@ -25,5 +27,5 @@ public interface YxBaseInfoControllerApi {
             @ApiParam(name = "pageSize",value = "每页显示数",required = true)
             Integer pageSize,
             @ApiParam(name = "nowPage",value = "当前页码",required = true)
-            Integer nowPage);
+            Integer nowPage) throws ParseException;
 }

@@ -14,10 +14,10 @@
     <description>安全控制模块，所有设计认证和授权先经过这个模块，通过后放行至资源模块</description>
     <dependencies>
         <!--服务注册-->
-        <dependency>
-            <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
-        </dependency>
+        <!--<dependency>-->
+            <!--<groupId>org.springframework.cloud</groupId>-->
+            <!--<artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>-->
+        <!--</dependency>-->
         <dependency>
             <groupId>com.ketai.service</groupId>
             <artifactId>yanxue-common</artifactId>
