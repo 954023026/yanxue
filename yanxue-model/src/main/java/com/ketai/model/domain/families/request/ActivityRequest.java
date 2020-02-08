@@ -19,7 +19,7 @@ public class ActivityRequest {
     private String organName;
 
     @ApiModelProperty(value = "学习阶段")
-    private Integer studyStep;
+    private Integer state;
 
     @ApiModelProperty(value = "研学状态")
     private Integer auditStatus;

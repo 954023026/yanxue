@@ -59,21 +59,21 @@ public class AdministratorController {
         String accountName = claims.getSubject();
         System.out.println("获取用户名---》" + accountName);
         QueryWrapper<Administrator> queryWrapper = new QueryWrapper<>();
-        Administrator account_name = administratorService.getOne(queryWrapper.eq("account_name", accountName));
-        return Result.ok(account_name);
+        Administrator account = administratorService.getOne(queryWrapper.eq("account_name", accountName));
+        return Result.ok(account);
     }
 
     @PostMapping("logout")
     @ApiOperation(value = "用户登出")
-    public Result logout(HttpServletRequest request) throws ServletException {
-        String authHeader = request.getHeader("SET_TOKEN");
-        System.out.println("获取用户token信息====>" + authHeader);
+    public Result logout(HttpServletRequest request) {
+        //请求头中获取token
+        String authHeader = request.getHeader("ping");
         if (authHeader == null) {
             ExceptionThrowOut.cast(ResultCodeEnum.USERUNLOGIN_ERROR);
         }
         //验证token
         Claims claims = JwtUtil.checkToken(authHeader);
-        System.out.println("退出----->" + claims);
+        //删除用户退出
         claims.remove(claims.getSubject());
         return Result.ok();
     }
@@ -82,7 +82,7 @@ public class AdministratorController {
         Claims claims = null;
         try {
             claims = JwtUtil.checkToken("eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxMTExMSIsInJvbGVzIjoic3RyaW5nIiwiaWF0IjoxNTgwOTczMTYwLCJleHAiOjE1ODA5NzQ5NjB9.qyHgoBNV_pVB7qKy74J9_1XO7Dlci57GMnmUg85CZWs");
-        } catch (ServletException e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
         System.out.println("退出----->" + claims);
