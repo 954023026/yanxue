@@ -25,6 +25,12 @@ public class AdminActivityRecordController implements AdminActivityRecordControl
     @Autowired
     private YxActivityRecordService recordService;
 
+    /**
+     * 添加风采图片
+     * @param imageUrl
+     * @return
+     * @author 周
+     */
     @PostMapping("addRecord")
     @Override
     public Result addRecord(@RequestParam("imageUrl") String imageUrl) {
@@ -32,6 +38,12 @@ public class AdminActivityRecordController implements AdminActivityRecordControl
         return Result.ok();
     }
 
+    /**
+     * 删除风采照片
+     * @param recordId
+     * @return
+     * @author 周
+     */
     @PostMapping("deleteRecordHome")
     @Override
     public Result deleteRecordHome(@RequestParam("recordId") Integer recordId) {

@@ -17,6 +17,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
 
+
 import java.util.List;
 
 /**
@@ -32,6 +33,12 @@ public class AdminActivityController implements AdminActivityControllerApi {
     @Autowired
     private YxActivityService activityService;
 
+    /**
+     * 根据学年统计数量
+     * @param schyear
+     * @return
+     * @author 周
+     */
     @PostMapping("getActivityStatisticsCount")
     @Override
     public Result getActivityStatisticsCount(
@@ -43,6 +50,7 @@ public class AdminActivityController implements AdminActivityControllerApi {
 
     /**
      * 分页查询研学信息
+     *
      * @param activityRequest
      * @return
      * @author  周

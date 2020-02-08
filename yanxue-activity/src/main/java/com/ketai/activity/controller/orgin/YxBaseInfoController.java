@@ -26,11 +26,12 @@ public class YxBaseInfoController implements YxBaseInfoControllerApi {
     @PostMapping("/qryBaseInfoPage")
     @Override
     public Result PageQuery(String baseName,Integer id,
-                            @RequestParam(defaultValue = "5") Integer pageSize,
+                            @RequestParam(defaultValue = "10") Integer pageSize,
                             @RequestParam(defaultValue = "0") Integer nowPage) {
         Page<YxBaseInfo> pageParam = new Page<>(nowPage, pageSize);
         yxBaseInfoService.pageQuery(pageParam,baseName,id);
         List<YxBaseInfo> records = pageParam.getRecords();
+        System.out.println("首页查询条件——————"+baseName);
         if(!StringUtils.isEmpty(id)){
             return Result.ok(records.get(0));
         }

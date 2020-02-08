@@ -8,6 +8,7 @@ import com.ketai.model.domain.families.response.ActivityVo;
 import com.ketai.model.domain.families.response.EvaluateInfoVo;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * <p>
@@ -21,4 +22,10 @@ public interface YxEvaluateInfoService extends IService<YxEvaluateInfo> {
 
 
     List<EvaluateInfoVo> qryBaseEvaluatePage(Page<ActivityVo> pageParam, EvaluateRequest evaluateRequest);
+
+    List<EvaluateInfoVo> qryEvaluateInfoPage(Page<ActivityVo> pageParam, EvaluateRequest evaluateRequest);
+
+    Map<String,Integer> queryBaseEvaluateGroupCnt();
+
+    void changeEvaluateState(EvaluateRequest evaluateRequest);
 }

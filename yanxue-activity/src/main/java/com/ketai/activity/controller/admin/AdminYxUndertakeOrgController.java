@@ -6,6 +6,7 @@ import com.ketai.common.response.Result;
 import com.ketai.model.domain.YxUndertakeOrg;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.StringUtils;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -22,6 +23,7 @@ public class AdminYxUndertakeOrgController implements YxUndertakeOrgControllerAp
     @Autowired
     private YxUndertakeOrgService yxUndertakeOrgService;
 
+    @PostMapping("saveUndertakeOrgInfo")
     @Override
     public Result saveBaseInfo(@RequestBody YxUndertakeOrg yxUndertakeOrg) {
         if(!StringUtils.isEmpty(yxUndertakeOrg.getId())){
