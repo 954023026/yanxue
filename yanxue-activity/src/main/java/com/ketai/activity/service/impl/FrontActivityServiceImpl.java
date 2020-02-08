@@ -7,7 +7,14 @@ import com.ketai.activity.mapper.FrontActivityMapper;
 import com.ketai.activity.service.FrontActivityService;
 import com.ketai.activity.service.FrontYxActivityRecordService;
 import com.ketai.activity.mapper.*;
+import com.ketai.activity.service.FrontActivityService;
+import com.ketai.activity.service.FrontYxActivityRecordService;
+import com.ketai.activity.service.YxActivityService;
+import com.ketai.activity.service.YxUndertakeOrgService;
 import com.ketai.common.constant.CommonAuditStatus;
+import com.ketai.activity.mapper.FrontActivityMapper;
+import com.ketai.activity.service.FrontActivityService;
+import com.ketai.activity.service.FrontYxActivityRecordService;
 import com.ketai.common.response.Result;
 import com.ketai.common.response.ResultMap;
 import com.ketai.model.domain.*;
@@ -48,6 +55,9 @@ public class FrontActivityServiceImpl extends ServiceImpl<FrontActivityMapper, Y
     @Autowired
     private YxEvaluateInfoMapper yxEvaluateInfoMapper;
 
+
+    @Autowired
+    private YxActivityService activityService;
 
     //分页查询
     @Override
@@ -137,19 +147,8 @@ public class FrontActivityServiceImpl extends ServiceImpl<FrontActivityMapper, Y
     //获取统计总数
     @Override
     public ActivityCount getActivityStatisticsCount(String schyear) {
-        ActivityCount activityCount=new ActivityCount();
-        QueryWrapper<YxActivity> queryWrapper=new QueryWrapper<>();
-        if (!StringUtils.isEmpty(schyear)){
-            queryWrapper.eq("schyear",schyear);
-        }
-        //查询累计开展研基地场次
-        activityCount.setAllBaseNumber(12);
-        //查询累计开展研机构践场次
-        activityCount.setAllUndertakeOrgNumber(12);
-        //查询累计开展研学实践场次
-        Integer actNumber = baseMapper.selectCount(queryWrapper.eq("audit_status", CommonAuditStatus.APPROVAL_PASSED_STATUS_6));
-        activityCount.setAllActNumber(actNumber);
-        return activityCount;
+        ActivityCount activityNum = activityService.findActivityNum(schyear);
+        return activityNum;
     }
 
 

@@ -27,7 +27,7 @@ public class YxBaseInfoController implements YxBaseInfoControllerApi {
     private YxBaseInfoService yxBaseInfoService;
 
     //根据基地名称分页查询，
-    @PostMapping("/qryBaseInfoPage")
+    @PostMapping("/qryBaseInfoPage1111")
     @Override
     public Result PageQuery(String baseName,Integer id,
                             @RequestParam(defaultValue = "10") Integer pageSize,

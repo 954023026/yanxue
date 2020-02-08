@@ -24,9 +24,12 @@ import java.util.List;
  * @author 研学旅行网项目组
  * @since 2020-01-06
  */
+@Repository
 public interface YxEvaluateInfoMapper extends BaseMapper<YxEvaluateInfo> {
 
     List<EvaluateInfoVo> findEvaluatePage(Page<ActivityVo> pageParam, @Param(Constants.WRAPPER) QueryWrapper<YxEvaluateInfo> queryWrapper);
+
+    YxEvaluateInfo getAllScore(Integer isOK, Integer id);
 
     List<EvaluateInfoVo> qryEvaluateInfoPage(Page<ActivityVo> pageParam, @Param(Constants.WRAPPER) QueryWrapper<YxEvaluateInfo> queryWrapper);
 

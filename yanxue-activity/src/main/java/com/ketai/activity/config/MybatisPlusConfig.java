@@ -16,20 +16,20 @@ import com.baomidou.mybatisplus.extension.plugins.PerformanceInterceptor;
 @MapperScan(value={"com.ketai.activity.mapper"})
 public class MybatisPlusConfig {
 
-    @Bean
+    /*@Bean
     public PaginationInterceptor paginationInterceptor() {
         PaginationInterceptor page = new PaginationInterceptor();
         page.setDialectType("mysql");
         return page;
-    }
+    }*/
     /**
      *  分页插件
      */
-    /*@Bean
+    @Bean
     public PaginationInterceptor paginationInterceptor() {
         // 设置sql的limit为无限制，默认是500
-        return new PaginationInterceptor().setLimit(-1);
-    }*/
+        return new PaginationInterceptor();
+    }
 
 
     @Bean
