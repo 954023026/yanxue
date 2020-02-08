@@ -2,6 +2,7 @@ package com.ketai.activity.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.ketai.model.domain.YxEvaluateInfo;
+import com.ketai.model.domain.families.response.EvaluateInfoNumVo;
 import org.springframework.stereotype.Repository;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
