@@ -31,15 +31,12 @@ public class FrontActivityRecordController implements FrontActivityRecordControl
 
     @PostMapping("selectRecordPage")
     @Override
-    public Result selectRecordPage(
-            @RequestParam("nowPage") Integer nowPage,
-            @RequestParam("pageSize") Integer pageSize,
-            PcActivityRecordQuery pcActivityRecordQuery) {
-        if (nowPage<=0||pageSize<=0){
+    public Result selectRecordPage(PcActivityRecordQuery pcActivityRecordQuery) {
+        if (pcActivityRecordQuery.getNowPage()<=0||pcActivityRecordQuery.getPageSize()<=0){
             //21003 参数错误
             throw new KetaiException(ResultCodeEnum.PARAM_ERROR);
         }
-        Page<YxActivityRecord> pageParam=new Page<>(nowPage,pageSize);
+        Page<YxActivityRecord> pageParam=new Page<>(pcActivityRecordQuery.getNowPage(),pcActivityRecordQuery.getPageSize());
         frontYxActivityRecordService.pageQuery(pageParam,pcActivityRecordQuery);
         return Result.ok(
                 new ResultListPage(

@@ -22,14 +22,15 @@ public class FrontActivityController implements FrontActivityControllerApi {
     @Autowired
     private FrontActivityService frontActivityService;
 
+    @Override
     @PostMapping("selectPage")
-    public Result selectPage(PcActivityQuery pcActivityQuery) {
+    public Result selectPage(Integer province,PcActivityQuery pcActivityQuery) {
         if (pcActivityQuery.getNowPage()<=0||pcActivityQuery.getPageSize()<=0){
             //21003 参数错误
             throw new KetaiException(ResultCodeEnum.PARAM_ERROR);
         }
         Page<YxActivity> pageParam=new Page<>(pcActivityQuery.getNowPage(),pcActivityQuery.getPageSize());
-        frontActivityService.pageQuery(pageParam,pcActivityQuery);
+        frontActivityService.pageQuery(province,pageParam,pcActivityQuery);
         System.out.println(pageParam.getTotal());
         return Result.ok(
                 new ResultListPage(

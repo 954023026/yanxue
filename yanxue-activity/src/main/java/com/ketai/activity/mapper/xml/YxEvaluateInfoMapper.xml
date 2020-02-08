@@ -7,7 +7,22 @@
         FROM yx_evaluate_info e
         LEFT JOIN yx_base_info AS  b  ON e.base_id=b.id
         <where>${ew.sqlSegment}</where>
-        GROUP BY e.base_id
+        GROUP BY e.base_idy5r
+    </select>
+
+    <select id="getAllScore" resultType="com.ketai.model.domain.YxEvaluateInfo" parameterType="Integer">
+    SELECT SUM(`safety_score`) as safety_score,SUM(`base_manage_score`) as base_manage_score,
+    SUM(`undertake_service_score`) as undertake_service_score,
+    SUM(`course_score`)as  course_score,SUM(`service_score`) as service_score,SUM(`score`) as score
+    FROM yx_evaluate_info
+    <where>
+        <if test="isOK!=0">
+            base_id =#{id}
+        </if>
+        <if test="isOK==0">
+            undertake_org_id=#{id}
+        </if>
+    </where>
     </select>
 
     <select id="qryEvaluateInfoPage" resultType="com.ketai.model.domain.families.response.EvaluateInfoVo">
@@ -25,4 +40,5 @@
     <select id="selectBaseEvaluateGroupCnt" resultType="com.ketai.model.domain.families.response.EvaluateInfoNumVo">
         SELECT FLOOR(score) score,COUNT(score) as scores FROM yx_evaluate_info GROUP BY FLOOR(score)
     </select>
+
 </mapper>

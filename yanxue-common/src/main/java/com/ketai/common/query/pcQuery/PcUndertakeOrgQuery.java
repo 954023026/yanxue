@@ -16,7 +16,7 @@ public class PcUndertakeOrgQuery implements Serializable {
     private Integer nowPage=1;
 
     @ApiModelProperty(value = "每页记录数")
-    private Integer pageSize;
+    private Integer pageSize=3;
 
     @ApiModelProperty(value = "研学承办机构模糊查询值")
     private String orgname;

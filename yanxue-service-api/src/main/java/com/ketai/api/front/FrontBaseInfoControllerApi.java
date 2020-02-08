@@ -13,10 +13,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 public interface FrontBaseInfoControllerApi {
     @ApiOperation(value = "分页条件查询")
     public Result qryBaseInfoPage(
-            @ApiParam(name = "nowPage", value = "当前页码", required = true)
-            @PathVariable Integer nowPage,
-            @ApiParam(name = "pageSize", value = "每页记录数", required = true)
-            @PathVariable Integer pageSize,
             @ApiParam(name = "pcBaseInfoQuery", value = "查询对象", required = false)
                     PcBaseInfoQuery pcBaseInfoQuery
     );

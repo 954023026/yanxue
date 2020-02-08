@@ -12,6 +12,11 @@ import java.io.Serializable;
 public class PcBaseInfoQuery implements Serializable {
     private static  final long serialVersionUID=1L;
 
+    @ApiModelProperty(value = "当前页")
+    private Integer nowPage=1;
+
+    @ApiModelProperty(value = "每页记录数")
+    private Integer pageSize=3;
 
     @ApiModelProperty(value = "区县id")
     private String areaId;

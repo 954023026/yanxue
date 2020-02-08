@@ -15,6 +15,7 @@ import com.ketai.common.response.Result;
 import com.ketai.common.response.ResultMap;
 import com.ketai.model.domain.*;
 import com.ketai.model.domain.families.ext.ActivityCount;
+import com.ketai.model.domain.families.response.EvaluateInfoVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
@@ -74,11 +75,9 @@ public class FrontBaseInfoServiceImpl extends ServiceImpl<YxBaseInfoMapper, YxBa
     }
     //根据id查询研学基地评分(总的评分)信息
     @Override
-    public List<YxEvaluateInfo> qryBaseEvaluateInfo(Integer baseId) {
-        QueryWrapper<YxEvaluateInfo> queryWrapper=new QueryWrapper<>();
-        queryWrapper.eq("base_id ",baseId);
-        List<YxEvaluateInfo> evaluateInfoList = yxEvaluateInfoMapper.selectList(queryWrapper);//评价集合
-        Integer count = yxEvaluateInfoMapper.selectCount(queryWrapper); //评价总数
-        return null;
+    public EvaluateInfoVo qryBaseEvaluateInfo(Integer id) {
+        FrontEvaluatenInfoserviceImpl frontEvaluatenInfoservice=new FrontEvaluatenInfoserviceImpl();
+        EvaluateInfoVo evaluateInfoVo = frontEvaluatenInfoservice.qryBaseEvaluateInfo(id, true);
+        return evaluateInfoVo;
     }
 }

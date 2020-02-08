@@ -46,7 +46,7 @@ public class FrontYxActivityRecordServiceImpl extends ServiceImpl<YxActivityReco
         String type = pcActivityRecordQuery.getType();  //类型
         Integer activityId = pcActivityRecordQuery.getActivityId(); //活动id
         if (!StringUtils.isEmpty(studyStep)){
-            queryWrapper.eq("",studyStep);
+            queryWrapper.eq("study_Step",studyStep);
         }
         if (!StringUtils.isEmpty(type)){
             queryWrapper.eq("type",type);

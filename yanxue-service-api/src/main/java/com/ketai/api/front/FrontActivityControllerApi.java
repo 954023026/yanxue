@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 public interface FrontActivityControllerApi {
     @ApiOperation(value = "分页条件查询")
     public Result selectPage(
+        @ApiParam(name = "province", value = "省内外", required = false)
+        Integer province,
         @ApiParam(name = "pcActivityQuery", value = "查询对象", required = false)
         PcActivityQuery pcActivityQuery
     );

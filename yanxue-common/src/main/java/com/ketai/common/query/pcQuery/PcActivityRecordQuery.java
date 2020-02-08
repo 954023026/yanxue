@@ -12,11 +12,17 @@ import java.io.Serializable;
 public class PcActivityRecordQuery implements Serializable {
     private static  final long serialVersionUID=1L;
 
+    @ApiModelProperty(value = "当前页")
+    private Integer nowPage=1;
+
+    @ApiModelProperty(value = "每页记录数")
+    private Integer pageSize=4;
+
     @ApiModelProperty(value = "学习阶段1小学2初中4高中")
     private Integer studyStep;
 
     @ApiModelProperty(value = "record活动风采")
-    private String type;
+    private String type="recordHome";
 
     @ApiModelProperty(value = "活动id")
     private Integer activityId;

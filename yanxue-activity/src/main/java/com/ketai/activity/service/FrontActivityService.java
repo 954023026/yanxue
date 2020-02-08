@@ -24,7 +24,7 @@ public interface FrontActivityService extends IService<YxActivity> {
      * @param pcActivityQuery 查询条件对象
      * @auther 黄松
      */
-    void pageQuery(Page<YxActivity> pageParam, PcActivityQuery pcActivityQuery);
+    void pageQuery(Integer province,Page<YxActivity> pageParam, PcActivityQuery pcActivityQuery);
 
     /**
      * 根据id查询研学实践

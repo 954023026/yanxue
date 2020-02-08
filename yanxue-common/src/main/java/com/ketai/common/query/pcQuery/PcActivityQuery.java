@@ -16,10 +16,10 @@ public class PcActivityQuery implements Serializable {
     private Integer nowPage=1;
 
     @ApiModelProperty(value = "每页记录数")
-    private Integer pageSize;
+    private Integer pageSize=12;
 
     @ApiModelProperty(value = "研学活动名称模糊查询值")
-    private String activityName;
+    private String search;
 
     @ApiModelProperty(value = "区县id")
     private Integer organId;
@@ -36,7 +36,7 @@ public class PcActivityQuery implements Serializable {
     @ApiModelProperty(value = "研学承办机构id")
     private Integer organizationId;
 
-    @ApiModelProperty(value = "研学承办机构id")
+    @ApiModelProperty(value = "年限")
     private String searchTime ;
 
 }

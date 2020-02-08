@@ -16,6 +16,7 @@ import com.ketai.model.domain.YxActivity;
 import com.ketai.model.domain.YxBaseInfo;
 import com.ketai.model.domain.YxEvaluateInfo;
 import com.ketai.model.domain.families.ext.ActivityCount;
+import com.ketai.model.domain.families.response.EvaluateInfoVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -33,15 +34,12 @@ public class FrontBaseInfoController implements FrontBaseInfoControllerApi {
 
     @PostMapping("qryBaseInfoPage")
     @Override
-    public Result qryBaseInfoPage(
-            @RequestParam("nowPage") Integer nowPage,
-            @RequestParam("pageSize") Integer pageSize,
-            PcBaseInfoQuery pcBaseInfoQuery) {
-        if (nowPage<=0||pageSize<=0){
+    public Result qryBaseInfoPage(PcBaseInfoQuery pcBaseInfoQuery) {
+        if (pcBaseInfoQuery.getNowPage()<=0||pcBaseInfoQuery.getPageSize()<=0){
             //21003 参数错误
             throw new KetaiException(ResultCodeEnum.PARAM_ERROR);
         }
-        Page<YxBaseInfo> pageParam=new Page<>(nowPage,pageSize);
+        Page<YxBaseInfo> pageParam=new Page<>(pcBaseInfoQuery.getNowPage(),pcBaseInfoQuery.getPageSize());
         frontBaseInfoService.pageQuery(pageParam,pcBaseInfoQuery);
         return Result.ok(
                 new ResultListPage(
@@ -77,7 +75,7 @@ public class FrontBaseInfoController implements FrontBaseInfoControllerApi {
     @PostMapping("qryBaseEvaluateInfo")
     @Override
     public Result qryBaseEvaluateInfo(Integer id) {
-        List<YxEvaluateInfo> result = frontBaseInfoService.qryBaseEvaluateInfo(id);
+        EvaluateInfoVo result=frontBaseInfoService.qryBaseEvaluateInfo(id);
         return Result.ok(result);
     }
 

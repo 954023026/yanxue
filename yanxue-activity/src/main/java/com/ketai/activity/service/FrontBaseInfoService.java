@@ -7,6 +7,7 @@ import com.ketai.common.query.pcQuery.PcBaseInfoQuery;
 import com.ketai.model.domain.YxActivityRecord;
 import com.ketai.model.domain.YxBaseInfo;
 import com.ketai.model.domain.YxEvaluateInfo;
+import com.ketai.model.domain.families.response.EvaluateInfoVo;
 
 import java.util.List;
 
@@ -39,5 +40,5 @@ public interface FrontBaseInfoService extends IService<YxBaseInfo> {
      * @param baseId 基地id
      * @auther 黄松
      */
-    List<YxEvaluateInfo> qryBaseEvaluateInfo(Integer baseId);
+    EvaluateInfoVo qryBaseEvaluateInfo(Integer baseId);
 }
