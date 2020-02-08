@@ -196,7 +196,7 @@ public class YxActivityServiceImpl extends ServiceImpl<YxActivityMapper, YxActiv
     public List<ActivityVo> pageStatisticsQuery(Page<ActivityVo> pageParam, ActivityRequest activityRequest) {
         QueryWrapper<YxActivity> queryWrapper = new QueryWrapper<>();
         //学习阶段
-        Integer state = activityRequest.getStudyStep();
+        Integer state = activityRequest.getState();
         //学校名称
         String schName = activityRequest.getSchName();
         //基地名称
